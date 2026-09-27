@@ -1,0 +1,2144 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#142848">
+  <meta name="description" content="Tính thuế thu nhập cá nhân Việt Nam 2026 theo Luật 109/2025/QH15">
+  <title>VietTax — Tính Thuế Thu Nhập Cá Nhân 2026</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231A3A6E'/><text y='.72em' x='50' text-anchor='middle' font-size='68' fill='%23C8911A'>₫</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,560;9..144,640&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --c-primary: #142848;
+      --c-primary-hover: #1C3764;
+      --c-primary-subtle: #E7EEF6;
+      --c-primary-border: #C9D7EA;
+      --c-accent: #C8911A;
+      --c-accent-light: #F8F1DE;
+      --c-success: #047857;
+      --c-success-bg: #E5F6EE;
+      --c-success-border: #A7F3D0;
+      --c-warning: #92400E;
+      --c-warning-bg: #FBF3E4;
+      --c-error: #9F2D2D;
+      --c-error-bg: #FDECEC;
+      --c-bg: #F6F3EC;
+      --c-surface: #FFFcf7;
+      --c-surface-2: #EFEAE2;
+      --c-border: rgba(20,32,51,.08);
+      --c-border-strong: #D9D1C5;
+      --c-text: #142033;
+      --c-text-2: #4B5B70;
+      --c-text-muted: #6D7B8C;
+      --c-text-inverse: #FFFFFF;
+      --font: "Be Vietnam Pro", "Segoe UI", system-ui, sans-serif;
+      --font-display: "Fraunces", "Be Vietnam Pro", Georgia, serif;
+      --text-xs: 0.8125rem;
+      --text-sm: 0.9375rem;
+      --text-base: 1.03125rem;
+      --text-lg: 1.125rem;
+      --text-xl: 1.5rem;
+      --text-2xl: 1.85rem;
+      --text-3xl: 2.25rem;
+      --sp-1: 4px; --sp-2: 8px; --sp-3: 12px;
+      --sp-4: 16px; --sp-5: 20px; --sp-6: 24px;
+      --sp-8: 32px; --sp-10: 40px; --sp-12: 48px;
+      --r-sm: 12px; --r-md: 16px; --r-lg: 20px; --r-xl: 28px; --r-full: 9999px;
+      --shadow-sm: 0 1px 2px rgba(20,32,51,.04);
+      --shadow-md: 0 10px 28px rgba(20,32,51,.08);
+      --shadow-lg: 0 24px 60px rgba(20,32,51,.12);
+    }
+    * { box-sizing: border-box; }
+    html { color-scheme: light; }
+    html, body { margin: 0; height: 100%; }
+    body {
+      font-family: var(--font);
+      background: var(--c-bg);
+      color: var(--c-text);
+      line-height: 1.5;
+      font-size: 16.5px;
+      -webkit-font-smoothing: antialiased;
+    }
+    button, input, select, textarea { font-family: inherit; }
+    button { cursor: pointer; }
+    button:disabled { cursor: not-allowed; }
+    :focus-visible { outline: 2px solid var(--c-primary); outline-offset: 3px; }
+    .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+      overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+    .layout { min-height: 100%; }
+    .brand-panel { display: none; }
+    .shell {
+      min-height: 100dvh;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      background: var(--c-bg);
+    }
+    .topbar {
+      flex: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: max(10px, env(safe-area-inset-top)) 12px 8px 8px;
+      background: transparent;
+      z-index: 5;
+    }
+    .icon-btn {
+      width: 44px; height: 44px; flex: none;
+      border: 0; background: transparent;
+      border-radius: 14px;
+      color: var(--c-primary);
+      display: grid; place-items: center;
+    }
+    .icon-btn:hover { background: rgba(20,40,72,.06); }
+    .prog { flex: 1; min-width: 0; padding-top: 2px; }
+    .prog-kicker {
+      font-size: 12px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--c-accent);
+    }
+    .prog-label {
+      font-size: 15px; font-weight: 600; color: var(--c-text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: -0.02em;
+    }
+    .track {
+      height: 3px; background: rgba(20,40,72,.08); border-radius: var(--r-full); margin-top: 7px;
+    }
+    .track > span {
+      display: block; height: 100%; background: var(--c-primary); border-radius: inherit;
+      transition: width .35s ease;
+    }
+    .lang {
+      flex: none;
+      min-height: 40px;
+      padding: 3px;
+      border-radius: var(--r-full);
+      border: 0;
+      background: rgba(20,40,72,.06);
+      display: inline-flex; align-items: center; gap: 2px;
+    }
+    .lang .opt {
+      min-width: 36px;
+      text-align: center;
+      padding: 7px 8px;
+      border-radius: var(--r-full);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--c-text-muted);
+    }
+    .lang .opt.on { background: var(--c-primary); color: #fff; }
+    main {
+      flex: 1; overflow: auto; overscroll-behavior: contain;
+      padding: 8px 20px 28px;
+    }
+    main.fwd .screen { animation: slide-fwd .32s cubic-bezier(.2,.7,.2,1); }
+    main.back .screen { animation: slide-back .32s cubic-bezier(.2,.7,.2,1); }
+    @keyframes slide-fwd {
+      from { opacity: 0; transform: translateX(18px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes slide-back {
+      from { opacity: 0; transform: translateX(-18px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes num-in {
+      from { opacity: .35; transform: translateY(5px); }
+      to { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      main.fwd .screen, main.back .screen, .dock-v, .track > span { animation: none; transition: none; }
+      .choice, .pick, .btn { transition: none; }
+    }
+    .screen { max-width: 520px; margin: 0 auto; }
+    .dock {
+      flex: none;
+      border-top: 0;
+      background: rgba(246,243,236,.94);
+      box-shadow: 0 -1px 0 rgba(20,32,51,.06);
+      backdrop-filter: blur(12px);
+      padding: 12px 16px max(14px, env(safe-area-inset-bottom));
+      display: flex; align-items: center; gap: 12px;
+    }
+    .dock-meta { flex: 1; min-width: 0; }
+    .dock-k {
+      font-size: 12px; color: var(--c-text-muted); font-weight: 700;
+      letter-spacing: .07em; text-transform: uppercase;
+    }
+    .dock-v {
+      font-size: 1.45rem; font-weight: 700; color: var(--c-primary);
+      letter-spacing: -0.03em; line-height: 1.15;
+      animation: num-in .28s ease;
+    }
+    .dock-v.zero { color: var(--c-success); }
+    .dock-sub { font-size: 13px; color: var(--c-text-2); margin-top: 1px; }
+    .btn {
+      appearance: none;
+      border: 0;
+      border-radius: 14px;
+      min-height: 52px;
+      padding: 0 18px;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: -0.01em;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(.985); }
+    .btn-primary { background: var(--c-primary); color: var(--c-text-inverse); }
+    .btn-primary:hover { background: var(--c-primary-hover); }
+    .btn-primary:disabled { background: #D5D0C6; color: #6D7B8C; }
+    .btn-block { width: 100%; min-height: 56px; }
+    .btn-ghost { background: transparent; color: var(--c-text-2); }
+    .btn-ghost:hover { background: rgba(20,40,72,.05); }
+    .btn-soft {
+      background: transparent; color: var(--c-primary);
+      min-height: 44px; padding-left: 0; padding-right: 0; justify-content: flex-start;
+    }
+    .stack { display: flex; flex-direction: column; gap: 10px; }
+    .intro { padding-top: 4px; }
+    .lede { margin: 12px 0 0; color: var(--c-text-2); font-size: 17px; line-height: 1.45; }
+    .hero-mark { display: flex; align-items: center; gap: 12px; }
+    .word {
+      font-weight: 700; font-size: 1.7rem; letter-spacing: -0.04em;
+      color: var(--c-primary); line-height: 1;
+    }
+    .word-sub { margin-top: 4px; color: var(--c-text-2); font-size: 13.5px; }
+    .lede.soft { margin-top: 6px; font-size: 15.5px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      margin-top: 14px;
+      background: transparent; color: #7A5A16;
+      padding: 0;
+      font-size: 12.5px; font-weight: 600;
+    }
+    .badge-dot { width: 7px; height: 7px; border-radius: 99px; background: var(--c-accent); flex: none; }
+    h1.q {
+      font-size: 1.75rem; line-height: 1.18; margin: 20px 0 12px;
+      letter-spacing: -0.038em; font-weight: 700;
+    }
+    h1.q.tight { margin-top: 6px; }
+    .form-head { display: flex; gap: 14px; align-items: flex-start; margin: 6px 0 22px; }
+    .form-head h1 { margin: 0; font-size: 1.7rem; line-height: 1.18; letter-spacing: -0.035em; font-weight: 700; }
+    .form-head .en-name { margin: 4px 0 0; color: var(--c-text-2); font-size: 14.5px; }
+    h2.sec { font-size: 1.35rem; margin: 0 0 16px; letter-spacing: -0.03em; }
+    .mark {
+      width: 46px; height: 46px; border-radius: 14px; flex: none;
+      display: grid; place-items: center;
+      background: #E7EEF6; color: var(--c-primary);
+    }
+    .mark.sm { width: 34px; height: 34px; border-radius: 11px; }
+    .choice, .pick { color: inherit; }
+    .choice {
+      display: flex; align-items: center; gap: 12px;
+      width: 100%; text-align: left;
+      background: rgba(255,255,255,.45);
+      border: 0; border-radius: 18px;
+      min-height: 76px;
+      padding: 12px 14px;
+      transition: background .2s ease, box-shadow .2s ease;
+    }
+    .choice:has(input:checked) {
+      background: #fff;
+      box-shadow: inset 3px 0 0 var(--c-accent), 0 12px 30px rgba(20,40,72,.08);
+    }
+    .choice:has(input:checked) .mark, .pick:has(input:checked) .mark {
+      background: var(--c-primary); color: #F6E7C1;
+    }
+    .choice-copy { flex: 1; min-width: 0; }
+    .choice strong { display: block; font-size: 17px; letter-spacing: -0.02em; line-height: 1.25; }
+    .sub { display: block; color: var(--c-text-2); font-size: 14.5px; margin-top: 3px; line-height: 1.4; }
+    .tick {
+      width: 22px; height: 22px; border-radius: var(--r-full);
+      display: grid; place-items: center; flex: none;
+      background: var(--c-primary); color: #F6E7C1;
+    }
+    .tick.empty { background: transparent; border: 0; box-shadow: inset 0 0 0 1.5px #C9C0B3; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .pick {
+      position: relative;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+      width: 100%; text-align: left;
+      background: rgba(255,255,255,.42);
+      border: 0; border-radius: 18px;
+      padding: 14px 12px 16px;
+      min-height: 142px;
+      transition: background .2s ease, box-shadow .2s ease;
+    }
+    .pick:has(input:checked) {
+      background: #fff;
+      box-shadow: 0 10px 24px rgba(20,40,72,.08);
+    }
+    .pick strong { font-size: 15px; line-height: 1.3; letter-spacing: -0.02em; font-weight: 700; }
+    .pick .sub { font-size: 13px; line-height: 1.35; margin-top: 0; }
+    .pick-tick { position: absolute; top: 12px; right: 12px; }
+    .field { display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
+    .field > label, .legend {
+      font-size: 15px; font-weight: 600; color: var(--c-text); letter-spacing: -0.01em;
+    }
+    .money-wrap { position: relative; }
+    .money, select.ctrl, .textarea {
+      width: 100%;
+      min-height: 64px;
+      font-size: 1.35rem;
+      padding: 14px 76px 14px 16px;
+      border: 0;
+      border-radius: 16px;
+      background: #fff;
+      color: var(--c-text);
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      box-shadow: inset 0 0 0 1px #E6DFD4;
+    }
+    select.ctrl, .textarea {
+      font-size: 16px; font-weight: 500; letter-spacing: 0; padding: 12px 14px; min-height: 54px;
+    }
+    .money:focus, select.ctrl:focus, .textarea:focus {
+      box-shadow: inset 0 0 0 1.5px var(--c-primary), 0 0 0 4px rgba(20,40,72,.1);
+      outline: none;
+    }
+    .suffix {
+      position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+      color: var(--c-text-muted); font-size: 13px; font-weight: 700; letter-spacing: .06em; pointer-events: none;
+    }
+    .seg {
+      display: flex; background: rgba(20,40,72,.06); padding: 4px; border-radius: 14px; gap: 4px;
+    }
+    .seg button {
+      flex: 1; min-height: 44px; border: 0; background: transparent;
+      border-radius: 11px; font-weight: 700; color: var(--c-text-2); font-size: 15px;
+    }
+    .seg button.on { background: #fff; color: var(--c-primary); box-shadow: var(--shadow-sm); }
+    .help { font-size: 15px; color: var(--c-text-2); margin: 8px 0 0; line-height: 1.5; }
+    .radio-line, .check-line {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 14px; border: 0; border-radius: 14px;
+      margin-bottom: 8px; background: rgba(255,255,255,.5); min-height: 52px;
+    }
+    .radio-line:has(input:checked), .check-line:has(input:checked) {
+      background: #fff;
+      box-shadow: inset 3px 0 0 var(--c-primary);
+    }
+    .radio-line input, .check-line input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--c-primary); flex: none; }
+    .radio-line span, .check-line span { font-size: 15px; line-height: 1.4; }
+    .card {
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 6px 0 0;
+      margin: 8px 0 4px;
+    }
+    .card h3 {
+      margin: 0 0 6px; font-size: 12px; color: var(--c-text-muted); font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+    .row { display: flex; justify-content: space-between; gap: 12px; padding: 9px 0; font-size: 15px; border-bottom: 1px solid rgba(20,32,51,.06); }
+    .row span:first-child { color: var(--c-text-2); }
+    .row b { font-weight: 600; }
+    .row.neg b { color: var(--c-error); }
+    .row.total { border-bottom: 0; margin-top: 2px; padding-top: 12px; font-size: 16px; }
+    .row.total b { color: var(--c-primary); font-size: 1.35rem; letter-spacing: -0.03em; }
+    .foot-note { margin: 6px 0 0; font-size: 13px; color: var(--c-text-2); }
+    .banner {
+      border: 0; border-radius: 14px; padding: 14px 14px 14px 16px; font-size: 15px; margin: 8px 0 14px; line-height: 1.45;
+    }
+    .banner strong { display: block; margin-bottom: 3px; font-size: 14px; }
+    .banner.ok { background: var(--c-success-bg); color: #065F46; box-shadow: inset 3px 0 0 var(--c-success); }
+    .banner.warn { background: var(--c-warning-bg); color: var(--c-warning); box-shadow: inset 3px 0 0 var(--c-accent); }
+    .banner.info { background: var(--c-primary-subtle); color: var(--c-primary); box-shadow: inset 3px 0 0 var(--c-primary); }
+    .bar { display: flex; height: 12px; border-radius: var(--r-full); overflow: hidden; background: rgba(20,40,72,.08); gap: 2px; }
+    .bar i { display: block; height: 100%; min-width: 4px; }
+    .bar i:first-child { border-radius: 99px 0 0 99px; }
+    .bar i:last-child { border-radius: 0 99px 99px 0; }
+    .bar-legend { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+    .bar-legend div { display: grid; grid-template-columns: 10px 1fr auto; align-items: baseline; gap: 8px; font-size: 13.5px; color: var(--c-text-2); }
+    .bar-legend b { color: var(--c-text); font-weight: 600; text-align: right; }
+    .sw { width: 10px; height: 10px; border-radius: 99px; flex: none; }
+    .brackets, .flow { margin: 22px 0 8px; }
+    .brackets h2, .flow h2 {
+      font-size: 12px; letter-spacing: .08em; text-transform: uppercase;
+      color: var(--c-text-muted); font-weight: 700; margin: 0 0 12px;
+    }
+    .flow ol { list-style: none; margin: 0; padding: 0; position: relative; }
+    .flow ol::before {
+      content: ""; position: absolute; left: 7px; top: 12px; bottom: 18px; width: 1px; background: #E4DDD2;
+    }
+    .flow li {
+      display: grid; grid-template-columns: 16px minmax(0,1fr) auto;
+      gap: 10px; align-items: center; padding: 7px 0; font-size: 15px; position: relative;
+    }
+    .flow li i { width: 8px; height: 8px; border-radius: 99px; background: var(--c-primary); justify-self: center; }
+    .flow li.out i { background: #C4B8A8; }
+    .flow li.mid i { background: #1A3A6E; }
+    .flow li.tax i { background: var(--c-accent); }
+    .flow li.net { padding-top: 12px; }
+    .flow li.net b { font-size: 1.3rem; color: var(--c-primary); letter-spacing: -0.03em; }
+    .flow li span { color: var(--c-text-2); }
+    .flow li.net span { color: var(--c-text); font-weight: 700; }
+    .flow-month {
+      display: flex; justify-content: space-between; align-items: baseline; gap: 12px;
+      margin: 8px 0 0; padding: 14px 16px; background: #fff; border-radius: 16px; font-size: 14.5px;
+    }
+    .flow-month b { font-size: 1.05rem; letter-spacing: -0.02em; }
+    details.fold { margin-top: 8px; }
+    details.fold summary {
+      min-height: 48px; display: flex; align-items: center; cursor: pointer;
+      font-weight: 700; color: var(--c-primary); font-size: 15px;
+    }
+    table.grid-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
+    table.grid-table th { text-align: left; color: var(--c-text-muted); font-weight: 600; padding: 6px 4px; }
+    table.grid-table td { padding: 8px 4px; border-top: 1px solid rgba(20,32,51,.06); }
+    table.grid-table td:last-child, table.grid-table th:last-child { text-align: right; }
+    .hero {
+      background: #142848; color: var(--c-text-inverse);
+      border-radius: 0 0 28px 28px;
+      padding: 6px 22px 20px;
+      margin: -8px -20px 8px;
+      text-align: left;
+      box-shadow: none;
+    }
+    .hero.ok { background: #0E3B32; }
+    .hero .eyebrow { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.72); font-weight: 700; }
+    .hero .big {
+      font-family: var(--font-display);
+      font-weight: 560;
+      font-size: clamp(2.6rem, 11vw, 3.7rem);
+      letter-spacing: -0.03em;
+      margin: 8px 0 6px; line-height: .95;
+    }
+    .hero-phrase { font-size: 16px; font-weight: 600; color: #F6E7C1; }
+    .hero.ok .hero-phrase { color: #C8F5DE; }
+    .hero-why { margin: 8px 0 0; font-size: 14.5px; line-height: 1.45; color: rgba(255,255,255,.8); }
+    .statrow {
+      display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px;
+      margin-top: 16px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14);
+    }
+    .statrow span { display: block; font-size: 11px; letter-spacing: .05em; text-transform: uppercase; color: rgba(255,255,255,.62); }
+    .statrow b { display: block; margin-top: 4px; font-size: 13px; font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+    .src {
+      border: 0; border-radius: 16px; margin: 10px 0;
+      background: rgba(255,255,255,.62); overflow: hidden;
+    }
+    .src > summary {
+      list-style: none; cursor: pointer; min-height: 64px;
+      display: flex; align-items: center; justify-content: space-between; gap: 10px;
+      padding: 12px 14px; font-weight: 700; font-size: 15px;
+    }
+    .src > summary::-webkit-details-marker { display: none; }
+    .src-name { display: flex; align-items: center; gap: 10px; min-width: 0; line-height: 1.25; }
+    .src .body { padding: 0 14px 12px; }
+    .chev { color: var(--c-text); font-weight: 700; font-size: 14px; flex: none; }
+    .disclaimer {
+      margin-top: 28px; padding-top: 8px;
+      font-size: 12.5px; color: var(--c-text-muted); line-height: 1.55;
+    }
+    .modal-back {
+      position: fixed; inset: 0; z-index: 40;
+      background: rgba(16,24,40,.46);
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 16px;
+    }
+    .modal {
+      width: min(480px, 100%);
+      background: var(--c-bg);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: max(0px, env(safe-area-inset-bottom));
+    }
+    .textarea {
+      min-height: 160px; padding: 14px; resize: vertical; font-weight: 500; line-height: 1.45; font-size: 15px;
+    }
+    .link { color: var(--c-primary); font-weight: 700; }
+    .stepper { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+    .stepper button {
+      width: 44px; height: 44px; border-radius: 12px;
+      border: 0; background: #fff; font-size: 20px; color: var(--c-primary);
+      box-shadow: inset 0 0 0 1px #E6DFD4;
+    }
+    .stepper strong { min-width: 32px; text-align: center; }
+    ul.clean { margin: 8px 0 0; padding-left: 18px; }
+    ul.clean li { margin: 4px 0; }
+    ul.ex { margin: 0; padding-left: 18px; color: var(--c-text-2); font-size: 14.5px; }
+    ul.ex li { margin: 8px 0; }
+    .split { display: flex; gap: 8px; }
+    .split .btn { flex: 1; }
+    .sources-head { margin-bottom: 4px; }
+    @media (min-width: 960px) {
+      body { background: #E6E0D6; }
+      .layout { display: grid; grid-template-columns: minmax(300px, 420px) minmax(0, 1fr); min-height: 100dvh; }
+      .brand-panel {
+        display: flex; flex-direction: column; justify-content: space-between;
+        background: #101C33; color: var(--c-text-inverse);
+        padding: 56px 40px 40px;
+      }
+      .brand-panel .word { color: #fff; font-size: 1.8rem; }
+      .brand-panel .word-sub { color: rgba(255,255,255,.7); }
+      .brand-panel h2 {
+        margin: 28px 0 12px; font-family: var(--font-display); font-weight: 560;
+        font-size: 2.7rem; letter-spacing: -0.03em; line-height: 1.12;
+      }
+      .brand-panel p { margin: 0; color: rgba(255,255,255,.72); font-size: 15px; }
+      .brand-panel .badge { color: #E7C98A; }
+      .brand-panel ul { padding-left: 18px; color: rgba(255,255,255,.86); font-size: 15.5px; }
+      .brand-panel li { margin: 10px 0; }
+      .shell {
+        height: calc(100dvh - 64px);
+        min-height: 0;
+        margin: 32px auto;
+        width: min(460px, calc(100% - 48px));
+        border: 0;
+        border-radius: 28px;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        background: var(--c-bg);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+/*TAX_ENGINE_START*/
+const Tax = {
+  M: 1000000,
+  progressive(income) {
+    const M = this.M;
+    if (income <= 0) return 0;
+    if (income <= 120 * M) return income * 0.05;
+    if (income <= 360 * M) return 6 * M + (income - 120 * M) * 0.10;
+    if (income <= 720 * M) return 30 * M + (income - 360 * M) * 0.20;
+    if (income <= 1200 * M) return 102 * M + (income - 720 * M) * 0.30;
+    return 246 * M + (income - 1200 * M) * 0.35;
+  },
+  salary(data, isResident) {
+    const annual = data.period === "year"
+      ? Math.round(data.annualInput || 0)
+      : Math.round((data.grossMonthly || 0) * 12);
+    if (!isResident) {
+      const tax = Math.round(annual * 0.20);
+      return {
+        tax, method: "flat_20", annual, ins: 0, taxable: annual,
+        personalDeduction: 0, depDeduction: 0, charity: 0,
+        net: annual - tax, effectiveRate: annual > 0 ? tax / annual : 0
+      };
+    }
+    const ins = Math.round(data.useAutoInsurance ? annual * 0.105 : (data.manualInsurance || 0));
+    const depDeduction = Math.max(0, data.dependents || 0) * 74400000;
+    const personalDeduction = 186000000;
+    const charity = data.hasCharity === false ? 0 : Math.round(data.charityDeductions || 0);
+    const taxable = Math.max(0, annual - ins - personalDeduction - depDeduction - charity);
+    const tax = Math.round(this.progressive(taxable));
+    return {
+      annual, ins, personalDeduction, depDeduction, charity, taxable, tax,
+      net: annual - ins - tax, effectiveRate: annual > 0 ? tax / annual : 0
+    };
+  },
+  business(data) {
+    const THRESH = 500000000;
+    const rev = Math.round(data.annualRevenue || 0);
+    const costs = Math.round(data.annualCosts || 0);
+    const bt = data.businessType || "other";
+    if (rev <= THRESH) return { tax: 0, exempt: true, atThreshold: rev === THRESH && rev > 0, revenue: rev };
+    let method = data.method === "cost" ? "cost" : "flat";
+    let forced = false;
+    if (rev > 3000000000 && method === "flat") { method = "cost"; forced = true; }
+    const rates = { goods: 0.005, services: 0.02, rental_agent: 0.05, manufacturing: 0.015, digital: 0.05, other: 0.01 };
+    if (method === "flat" && rev <= 3000000000) {
+      const rate = rates[bt] ?? 0.01;
+      return { tax: Math.round((rev - THRESH) * rate), rate, method: "flat", revenue: rev, forced: false };
+    }
+    const taxable = Math.max(0, rev - costs);
+    const rate = rev > 50000000000 ? 0.20 : rev > 3000000000 ? 0.17 : 0.15;
+    return { tax: Math.round(taxable * rate), taxable, rate, method: "cost", revenue: rev, costs, forced };
+  },
+  rental(data) {
+    if (data.isAccommodation) {
+      return Object.assign({ accommodation: true }, this.business({
+        annualRevenue: data.annualRevenue,
+        businessType: data.businessType || "services",
+        method: data.method || "flat",
+        annualCosts: data.annualCosts || 0
+      }));
+    }
+    const THRESH = 500000000;
+    const rev = Math.round(data.annualRevenue || 0);
+    if (rev <= THRESH) return { tax: 0, exempt: true, atThreshold: rev === THRESH && rev > 0, revenue: rev };
+    return { tax: Math.round((rev - THRESH) * 0.05), revenue: rev, rate: 0.05 };
+  },
+  securities(data) { return { tax: Math.round((data.totalSaleValue || 0) * 0.001) }; },
+  dividends(data) { return { tax: Math.round((data.totalIncome || 0) * 0.05) }; },
+  equity(data) {
+    const sp = Math.round(data.salePrice || 0);
+    const ex = Math.round(data.expenses || 0);
+    const pp = data.purchasePrice;
+    const known = data.knowsCost === true || (data.knowsCost !== false && pp !== null && pp !== undefined && pp !== "");
+    if (!known) return { tax: Math.round(sp * 0.02), method: "flat" };
+    const gain = Math.max(0, sp - Math.round(Number(pp) || 0) - ex);
+    return { tax: Math.round(gain * 0.20), method: "cost", gain };
+  },
+  realestate(data) {
+    if (data.isExempt || data.isFamily || data.isOnlyHome) return { tax: 0, exempt: true };
+    return { tax: Math.round((data.salePrice || 0) * 0.02) };
+  },
+  prizes(data) {
+    if (data.isCasino) return { tax: 0, exempt: true, reason: "casino" };
+    const value = Math.round(data.prizeValue || 0);
+    const taxable = Math.max(0, value - 20000000);
+    return { tax: Math.round(taxable * 0.10), taxable, value };
+  },
+  royalties(data) {
+    const value = Math.round(data.contractValue || 0);
+    const taxable = Math.max(0, value - 20000000);
+    return { tax: Math.round(taxable * 0.05), taxable, value };
+  },
+  inheritance(data) {
+    if (data.isExempt) return { tax: 0, exempt: true };
+    const value = Math.round(data.assetValue || 0);
+    const taxable = Math.max(0, value - 20000000);
+    return { tax: Math.round(taxable * 0.10), taxable, value };
+  },
+  other(data) {
+    const v = Math.round(data.totalValue || 0);
+    const type = data.incomeType || "digital_asset";
+    if (type === "digital_asset" || type === "gold") return { tax: Math.round(v * 0.001), rate: 0.001, type, value: v };
+    if (type === "carbon" && data.firstCarbon) return { tax: 0, exempt: true, type, reason: "first_carbon", value: v };
+    const taxable = Math.max(0, v - 20000000);
+    return { tax: Math.round(taxable * 0.05), taxable, rate: 0.05, type, value: v };
+  },
+  digitalAssets(data) { return { tax: Math.round((data.totalValue || 0) * 0.001) }; },
+  totalTax(results) {
+    return Object.values(results).reduce((sum, r) => sum + (r.tax || 0), 0);
+  },
+  bracketBreakdown(taxableIncome) {
+    const M = this.M;
+    const brackets = [
+      { id: 1, max: 120 * M, rate: 0.05, color: "#86EFAC" },
+      { id: 2, max: 360 * M, rate: 0.10, color: "#FDE68A" },
+      { id: 3, max: 720 * M, rate: 0.20, color: "#FCD34D" },
+      { id: 4, max: 1200 * M, rate: 0.30, color: "#FDBA74" },
+      { id: 5, max: Infinity, rate: 0.35, color: "#FCA5A5" }
+    ];
+    let remaining = taxableIncome, prevMax = 0, result = [];
+    for (const b of brackets) {
+      if (remaining <= 0) break;
+      const inBracket = Math.min(remaining, b.max - prevMax);
+      result.push({ id: b.id, rate: b.rate, color: b.color, amount: inBracket, tax: inBracket * b.rate });
+      remaining -= inBracket;
+      prevMax = b.max;
+    }
+    return result;
+  }
+};
+
+function runSelfTests() {
+  const fails = [];
+  const eq = (name, got, exp) => {
+    if (Math.round(got) !== Math.round(exp)) fails.push(name + ": got " + got + " expected " + exp);
+  };
+  eq("T1", Tax.salary({ grossMonthly: 20000000, useAutoInsurance: true, dependents: 1, charityDeductions: 0 }, true).tax, 0);
+  eq("T2", Tax.salary({ grossMonthly: 30000000, useAutoInsurance: true, dependents: 0, charityDeductions: 0 }, true).tax, 7620000);
+  eq("T3", Tax.salary({ grossMonthly: 100000000, useAutoInsurance: true, dependents: 0, charityDeductions: 0 }, true).tax, 152400000);
+  eq("T4", Tax.rental({ annualRevenue: 800000000, isAccommodation: false }).tax, 15000000);
+  eq("T5", Tax.rental({ annualRevenue: 400000000 }).tax, 0);
+  eq("T6", Tax.business({ annualRevenue: 1200000000, method: "flat", businessType: "services", annualCosts: 0 }).tax, 14000000);
+  eq("T7", Tax.prizes({ prizeValue: 50000000, isCasino: false }).tax, 3000000);
+  eq("T8", Tax.realestate({ salePrice: 3000000000, isExempt: true }).tax, 0);
+  eq("T9", Tax.realestate({ salePrice: 3000000000, isExempt: false }).tax, 60000000);
+  eq("T10", Tax.salary({ grossMonthly: 20000000, useAutoInsurance: true, dependents: 0 }, false).tax, 48000000);
+  eq("T11", Tax.securities({ totalSaleValue: 500000000 }).tax, 500000);
+  eq("T12", Tax.dividends({ totalIncome: 100000000 }).tax, 5000000);
+  eq("T2ins", Tax.salary({ grossMonthly: 30000000, useAutoInsurance: true, dependents: 0 }, true).ins, 37800000);
+  eq("T2taxable", Tax.salary({ grossMonthly: 30000000, useAutoInsurance: true, dependents: 0 }, true).taxable, 136200000);
+  eq("biz500", Tax.business({ annualRevenue: 500000000, method: "flat", businessType: "services" }).tax, 0);
+  eq("casino", Tax.prizes({ prizeValue: 500000000, isCasino: true }).tax, 0);
+  eq("equityFlat", Tax.equity({ salePrice: 1000000000, knowsCost: false }).tax, 20000000);
+  eq("equityCost", Tax.equity({ salePrice: 1000000000, knowsCost: true, purchasePrice: 600000000, expenses: 0 }).tax, 80000000);
+  eq("prize20", Tax.prizes({ prizeValue: 20000000, isCasino: false }).tax, 0);
+  eq("stock", Tax.securities({ totalSaleValue: 500000000 }).tax, 500000);
+  const forced = Tax.business({ annualRevenue: 3100000000, method: "flat", businessType: "services", annualCosts: 1000000000 });
+  if (forced.method !== "cost") fails.push("force method");
+  return { ok: fails.length === 0, fails };
+}
+/*TAX_ENGINE_END*/
+
+const INCOME_ORDER = ["salary","business","rental","securities","dividends","equity","realestate","prizes","royalties","inheritance","other"];
+const DISCLAIMER = "Đây là công cụ ước tính mang tính tham khảo, không thay thế tư vấn thuế chuyên nghiệp hoặc quyết toán thuế chính thức với cơ quan thuế. Kết quả tính toán dựa trên thông tin bạn cung cấp và quy định của Luật Thuế thu nhập cá nhân số 109/2025/QH15, có hiệu lực từ ngày 01 tháng 7 năm 2026. Vui lòng tham khảo cơ quan thuế hoặc tư vấn thuế chuyên nghiệp để được hỗ trợ chính xác về nghĩa vụ thuế cá nhân của bạn.";
+const LAW_BADGE = "Luật 109/2025/QH15 · Hiệu lực 01/07/2026";
+
+const GLYPH = {
+  salary: '<rect x="3.5" y="7" width="17" height="13" rx="2"/><path d="M8 7V5.8A1.8 1.8 0 0 1 9.8 4h4.4A1.8 1.8 0 0 1 16 5.8V7"/><path d="M3.5 12.5h17"/>',
+  business: '<path d="M4 10.5 5.2 5h13.6L20 10.5"/><path d="M5 10.5V20h14V10.5"/><path d="M10 20v-4.5h4V20"/>',
+  rental: '<path d="M4 11.2 12 4l8 7.2"/><path d="M6.5 10.5V20h11V10.5"/><path d="M10 20v-4.5h4V20"/>',
+  home: '<path d="M4 11.2 12 4l8 7.2"/><path d="M6.5 10.5V20h11V10.5"/>',
+  plane: '<path d="M3.5 12.2 20.5 5l-6.6 15.2-2-5.6z"/>',
+  securities: '<path d="M4 19V5"/><path d="M4 19h16"/><path d="M7.5 14.5 11 10l3 2.2L18 7"/>',
+  dividends: '<circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.2 9.6h3.6a1.7 1.7 0 0 1 0 3.4H9.2M9.2 13h4.2a1.7 1.7 0 0 1 0 3.4H9.2"/>',
+  equity: '<path d="M5 20V7.2L12 4l7 3.2V20"/><path d="M9.5 20v-4h5v4"/><path d="M9 10h.01M12 10h.01M15 10h.01M9 13.5h.01M12 13.5h.01M15 13.5h.01"/>',
+  realestate: '<circle cx="15.2" cy="8" r="3"/><path d="M15.2 11 12 14.2H9.8V16.5H7.6V19H4.8v-3.1L12.4 8.6"/>',
+  prizes: '<circle cx="12" cy="8" r="3.1"/><path d="M8.6 12.4 6.6 20l5.4-2.5L17.4 20l-2-7.6"/>',
+  royalties: '<path d="M14.2 4.2 19.8 9.8"/><path d="M13.2 5.2 4.8 13.6V19h5.4l8.4-8.4z"/>',
+  inheritance: '<path d="M4.5 11h15v8.5h-15z"/><path d="M12 11v8.5M4.5 14.2h15"/><path d="M12 11c-1.8 0-3-1.6-3-2.7S10 6 12 8c2-2 3-1.2 3 .3S13.8 11 12 11z"/>',
+  other: '<path d="M12 3.2 19 7.2v9.6L12 20.8 5 16.8V7.2z"/><path d="M12 8.2v7.6"/>'
+};
+function iconSvg(name, size) {
+  const s = size || 22;
+  return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + (GLYPH[name] || GLYPH.other) + '</svg>';
+}
+function logoMark(size) {
+  const s = size || 46;
+  return '<svg class="logo" width="' + s + '" height="' + s + '" viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="14" fill="#142848"/><circle cx="24" cy="24" r="13" fill="none" stroke="#C8911A" stroke-width="1.4"/><path d="M24 14.8v18.2M19.2 18.4h6.5a3.3 3.3 0 0 1 0 6.6H19.2" fill="none" stroke="#F6E7C1" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+}
+function formTitle(key) {
+  return '<div class="form-head"><span class="mark">' + iconSvg(key, 22) + '</span><div><h1>' + h("inc_" + key) + '</h1><p class="en-name">' + esc(tOther("inc_" + key)) + '</p></div></div>';
+}
+const BRACKET_COLORS = ["#8FB4D4", "#C8911A", "#1A3A6E", "#8A5A2B", "#9B3A3A"];
+function paintBrackets(taxable) {
+  return Tax.bracketBreakdown(taxable || 0).map(function (b) {
+    return { amount: b.amount, color: BRACKET_COLORS[b.id - 1] || b.color, label: t("br" + b.id), tax: b.tax };
+  });
+}
+
+
+const STRINGS = {
+  vi: {
+    stepOf: "Bước {i} / {n}",
+    back: "Quay lại",
+    continue: "Tiếp tục",
+    done: "Xong",
+    start: "Bắt đầu",
+    estimated: "Thuế ước tính",
+    running: "Tổng tạm tính",
+    sourcesCount: "{n} nguồn thu nhập đã chọn",
+    whoAreYou: "Bạn là đối tượng nộp thuế nào?",
+    resident: "Cá nhân cư trú",
+    residentSub: "Sống tại Việt Nam ≥183 ngày/năm hoặc có nơi ở đăng ký",
+    nonresident: "Cá nhân không cư trú",
+    nonresidentSub: "Dưới 183 ngày/năm tại Việt Nam",
+    welcomeTitle: "Tính thuế thu nhập cá nhân 2026",
+    brandLine: "Thuế TNCN, tính trên máy bạn.",
+    flowTitle: "Từ lương đến thực nhận",
+    flowDeds: "Giảm trừ gia cảnh",
+    whyZero: "Sau bảo hiểm và giảm trừ, không còn thu nhập tính thuế.",
+    bracketDetails: "Chi tiết từng bậc",
+    statIncome: "Thu nhập",
+    statRate: "Suất hiệu dụng",
+    statNet: "Sau thuế",
+    welcomeKicker: "Đối tượng nộp thuế",
+    selectTitle: "Bạn có những nguồn thu nhập nào?",
+    selectSub: "Chọn tất cả nguồn áp dụng cho năm tính thuế",
+    stepSelect: "Nguồn thu nhập",
+    stepResults: "Kết quả",
+    stepForm: "Kê khai",
+    nonResBanner: "Cá nhân không cư trú: tiền lương chịu thuế suất cố định 20% trên tổng thu nhập, không áp dụng giảm trừ gia cảnh.",
+    exemptionsTitle: "Một số khoản miễn thuế thường gặp",
+    ex1: "Chuyển nhượng bất động sản hoặc tài sản giữa vợ chồng, cha mẹ và con đẻ/nuôi, ông bà và cháu, anh chị em ruột, cha mẹ chồng/vợ và con dâu/rể.",
+    ex2: "Người bán chỉ có một nhà ở hoặc đất ở duy nhất trên cả nước.",
+    ex3: "Lãi tiền gửi ngân hàng, lãi trái phiếu Chính phủ và trái phiếu chính quyền địa phương.",
+    ex4: "Quyền lợi từ hợp đồng bảo hiểm nhân thọ.",
+    ex5: "Kiều hối của người Việt Nam ở nước ngoài.",
+    ex6: "Phụ cấp ca đêm và phần tiền lương làm thêm giờ vượt mức lương thường.",
+    ex7: "Lương hưu bảo hiểm xã hội.",
+    ex8: "Học bổng.",
+    ex9: "Khoản bồi thường từ hợp đồng bảo hiểm.",
+    ex10: "Thu nhập hộ gia đình từ sản xuất nông nghiệp trực tiếp, chưa chế biến.",
+    ex11: "Thu nhập nhà đầu tư hoặc người sáng lập doanh nghiệp khởi nghiệp — miễn 5 năm (Điều 5).",
+    ex12: "Tiền thắng ca-si-no.",
+    ex13: "Thu nhập sau thuế TNDN của hộ kinh doanh, cá nhân kinh doanh và chủ công ty TNHH một thành viên (Điều 4, khoản 21).",
+    grossMonth: "Thu nhập hàng tháng (gross / trước thuế)",
+    grossYear: "Thu nhập cả năm (gross / trước thuế)",
+    periodLabel: "Tính theo",
+    month: "Tháng",
+    year: "Năm",
+    insTitle: "Bảo hiểm xã hội, y tế, thất nghiệp",
+    insAuto: "Tự động (8% + 1,5% + 1% = 10,5% lương)",
+    insManual: "Nhập tay số bảo hiểm người lao động đóng trong năm",
+    ceilingNote: "BHXH có trần lương đóng. Nếu thu nhập của bạn vượt trần, hãy chọn nhập tay theo số thực tế trên phiếu lương.",
+    depTitle: "Số người phụ thuộc",
+    depHelp: "Mỗi người: trừ {m}/tháng ({y}/năm).",
+    charityTitle: "Đóng góp từ thiện, chi phí y tế và giáo dục",
+    charityYes: "Có — nhập số tiền trong năm (cần hóa đơn, chứng từ)",
+    charityNo: "Không",
+    sumGross: "Tiền lương năm",
+    sumIns: "Bảo hiểm",
+    sumPersonal: "Giảm trừ bản thân",
+    sumDep: "Giảm trừ người phụ thuộc ({n})",
+    sumCharity: "Từ thiện / y tế / giáo dục",
+    sumTaxable: "Thu nhập tính thuế",
+    sumTax: "Thuế TNCN ước tính",
+    ofIncome: "(~{p} thu nhập)",
+    noTaxHappy: "Không phát sinh thuế TNCN",
+    enterAmount: "Nhập số tiền để xem ước tính.",
+    bracketTitle: "Biểu thuế lũy tiến",
+    deductible: "Phần giảm trừ",
+    br1: "Bậc 1 (5%)", br2: "Bậc 2 (10%)", br3: "Bậc 3 (20%)", br4: "Bậc 4 (30%)", br5: "Bậc 5 (35%)",
+    colBracket: "Bậc", colPart: "Phần thu nhập", colRate: "Thuế suất", colTax: "Thuế",
+    nonResSalary: "Không cư trú: thuế = tổng tiền lương × 20%. Không giảm trừ gia cảnh, bảo hiểm hay người phụ thuộc.",
+    flat20: "Thuế suất cố định 20%",
+    bizType: "Loại hình kinh doanh",
+    biz_goods: "Phân phối, cung cấp hàng hóa (0,5%)",
+    biz_services: "Dịch vụ, xây dựng không bao thầu NVL (2%)",
+    biz_rental_agent: "Cho thuê tài sản, đại lý bảo hiểm, xổ số, đa cấp (5%)",
+    biz_manufacturing: "Sản xuất, vận tải, xây dựng có bao thầu NVL (1,5%)",
+    biz_digital: "Sản phẩm, dịch vụ nội dung số (5%)",
+    biz_other: "Kinh doanh khác (1%)",
+    revenue: "Tổng doanh thu năm",
+    atThreshold: "Đúng ngưỡng 500 triệu — chưa phát sinh thuế.",
+    exemptBiz: "Doanh thu không quá 500 triệu/năm: miễn thuế TNCN từ kinh doanh.",
+    smartTip: "Doanh thu ≤ 500 triệu/năm → hoàn toàn miễn thuế TNCN từ kinh doanh.",
+    methodTitle: "Phương pháp tính thuế",
+    methodFlat: "Phương pháp tỷ lệ (đơn giản hơn)",
+    methodCost: "Phương pháp chi phí thực tế",
+    flatFormula: "Thuế = (Doanh thu − 500 triệu) × {p}",
+    costFormula: "Thuế = (Doanh thu − Chi phí) × {p}",
+    costs: "Chi phí hợp lý trong năm",
+    forcedCost: "Doanh thu trên 3 tỷ đồng: chỉ được dùng phương pháp chi phí. Thuế suất {p} trên thu nhập tính thuế (doanh thu trừ chi phí).",
+    compare: "Với doanh thu này, phương pháp tỷ lệ: {flat} — phương pháp chi phí: {cost}.",
+    shouldPick: "Bạn nên chọn mức thấp hơn: {name}.",
+    pickFlat: "phương pháp tỷ lệ",
+    pickCost: "phương pháp chi phí",
+    pickEither: "Hai phương pháp cho cùng một số thuế.",
+    costsHint: "Nhập chi phí thực tế để so sánh công bằng. Chi phí đang để 0 thì phương pháp chi phí gần như luôn cao hơn.",
+    exemptRental: "Doanh thu cho thuê không quá 500 triệu/năm: miễn thuế TNCN.",
+    rentalRevenue: "Tổng doanh thu cho thuê trong năm",
+    rentalFormula: "Thuế = (Doanh thu − 500 triệu) × 5%",
+    accommodation: "Đây là hoạt động kinh doanh lưu trú có đăng ký (khách sạn, hostel, homestay, Airbnb đăng ký kinh doanh). Nếu chọn, tính theo quy tắc kinh doanh, không phải thuế cho thuê 5%.",
+    accType: "Loại hình áp dụng khi tính như kinh doanh",
+    secValue: "Tổng giá trị bán chứng khoán trong năm",
+    secHint: "Cổ phiếu, trái phiếu, chứng chỉ quỹ.",
+    secFormula: "Thuế = Tổng giá trị bán × 0,1%",
+    secNote: "Thuế này thường được sàn giao dịch khấu trừ tự động. Kiểm tra sao kê để tránh khai trùng.",
+    divValue: "Tổng cổ tức, lợi tức đầu tư vốn nhận trong năm",
+    divFormula: "Thuế = Tổng thu nhập × 5%",
+    divWarnTitle: "Không tính vào đây",
+    divWarn1: "Lãi tiền gửi ngân hàng — miễn thuế",
+    divWarn2: "Lãi trái phiếu Chính phủ và chính quyền địa phương — miễn thuế",
+    divWarn3: "Quyền lợi hợp đồng bảo hiểm nhân thọ — miễn thuế",
+    eqSale: "Giá chuyển nhượng",
+    eqAsk: "Bạn có biết giá vốn (giá mua ban đầu)?",
+    eqYes: "Có — tính 20% trên chênh lệch",
+    eqNo: "Không — tính 2% trên giá chuyển nhượng",
+    eqBasis: "Giá vốn",
+    eqExp: "Chi phí liên quan",
+    eqFormulaCost: "Thuế = (Giá chuyển nhượng − Giá vốn − Chi phí) × 20%",
+    eqFormulaFlat: "Thuế = Giá chuyển nhượng × 2%",
+    eqLoss: "Giá vốn và chi phí không thấp hơn giá bán — không phát sinh thuế.",
+    rePrice: "Giá chuyển nhượng bất động sản",
+    reCheck: "Kiểm tra điều kiện miễn thuế",
+    reFamily: "Chuyển nhượng cho vợ/chồng, cha mẹ, con đẻ hoặc con nuôi, ông bà, anh chị em ruột, cha mẹ vợ/chồng hoặc con dâu/rể — miễn thuế",
+    reOnly: "Đây là nhà ở hoặc đất ở duy nhất của tôi tại Việt Nam — miễn thuế",
+    reFormula: "Thuế = Giá chuyển nhượng × 2%",
+    exemptRe: "Miễn thuế chuyển nhượng bất động sản",
+    prizeValue: "Giá trị giải thưởng nhận được",
+    prizeKind: "Loại giải thưởng",
+    prizeNormal: "Xổ số, khuyến mại, đặt cược, thi có thưởng, trò chơi có thưởng",
+    prizeCasino: "Ca-si-no — miễn thuế",
+    casinoExempt: "Tiền thắng ca-si-no được miễn thuế TNCN.",
+    prizeBelow: "Giải thưởng không quá 20 triệu đồng — không phát sinh thuế.",
+    prizeMath: "Thu nhập tính thuế = giá trị − 20 triệu. Thuế = phần đó × 10%.",
+    royKind: "Loại thu nhập",
+    royRoyalty: "Bản quyền (chuyển quyền sở hữu trí tuệ, chuyển giao công nghệ)",
+    royFranchise: "Nhượng quyền thương mại",
+    royValue: "Giá trị hợp đồng",
+    royPer: "Áp dụng theo từng hợp đồng.",
+    royBelow: "Giá trị hợp đồng không quá 20 triệu đồng — dưới ngưỡng chịu thuế.",
+    royMath: "Thu nhập tính thuế = giá trị − 20 triệu. Thuế = phần đó × 5%.",
+    inhCheck: "Kiểm tra miễn thuế trước",
+    inhFamily: "Nhận từ vợ/chồng, cha mẹ đẻ hoặc nuôi, con đẻ hoặc nuôi, ông bà nội/ngoại, anh chị em ruột — miễn thuế",
+    inhKind: "Loại tài sản",
+    inhSec: "Chứng khoán hoặc phần vốn góp",
+    inhRe: "Bất động sản",
+    inhOther: "Tài sản khác phải đăng ký quyền sở hữu hoặc sử dụng",
+    inhValue: "Giá trị tài sản",
+    inhMath: "Thuế = (Giá trị − 20 triệu) × 10%",
+    inhBelow: "Giá trị không quá 20 triệu đồng — không phát sinh thuế.",
+    exemptInh: "Miễn thuế thừa kế / quà tặng",
+    othKind: "Loại thu nhập khác",
+    othDigital: "Tài sản số (crypto, NFT, token…)",
+    othGold: "Vàng miếng",
+    othDomain: "Chuyển nhượng tên miền .vn",
+    othPlate: "Biển số xe trúng đấu giá",
+    othCarbon: "Chuyển nhượng tín chỉ carbon (từ lần thứ hai)",
+    othValue: "Tổng giá trị giao dịch / chuyển nhượng",
+    othFull: "Thuế = tổng giá trị × 0,1%. Không trừ giá vốn.",
+    othGoldNote: "Ngưỡng đối với vàng miếng có thể được Chính phủ quy định bằng nghị định. Ước tính này áp dụng 0,1% trên toàn bộ giá trị chuyển nhượng theo luật.",
+    othFirst: "Đây là lần chuyển nhượng tín chỉ carbon đầu tiên — miễn thuế",
+    othCarbonExempt: "Lần chuyển nhượng tín chỉ carbon đầu tiên được miễn thuế.",
+    othMath: "Thuế = (Giá trị − 20 triệu) × 5% cho mỗi lần phát sinh.",
+    othBelow: "Giá trị không quá 20 triệu đồng — không phát sinh thuế.",
+    heroTitle: "Tổng thuế TNCN ước tính năm 2026",
+    effective: "Thuế suất hiệu dụng: {p}",
+    netLabel: "Thu nhập ròng (sau thuế)",
+    netFoot: "Với tiền lương, đã trừ bảo hiểm người lao động. Các nguồn khác là giá trị kê khai trừ thuế, chưa trừ chi phí kinh doanh trừ khi bạn chọn phương pháp chi phí.",
+    zeroHero: "Bạn không phát sinh nghĩa vụ thuế TNCN",
+    takeHome: "Thu nhập thực nhận",
+    avgMonth: "Tháng trung bình",
+    insLine: "Bảo hiểm ({p})",
+    pitLine: "Thuế TNCN",
+    salaryNetTitle: "Tiền lương thực nhận",
+    notesTitle: "Lưu ý quan trọng",
+    note1: "Đây là ước tính tham khảo, không phải quyết toán thuế chính thức.",
+    note2: "Căn cứ Luật số 109/2025/QH15, hiệu lực từ 01/07/2026.",
+    note3: "Mức giảm trừ gia cảnh có thể điều chỉnh theo biến động CPI.",
+    note4: "Khai thuế chính thức tại thuedientu.gdt.gov.vn",
+    edit: "Chỉnh sửa",
+    editThis: "Sửa mục này",
+    editSources: "Sửa nguồn thu nhập",
+    reset: "Tính lại từ đầu",
+    resetAsk: "Xoá toàn bộ số liệu đã nhập?",
+    resetYes: "Xoá và tính lại",
+    cancel: "Huỷ",
+    share: "Chia sẻ kết quả",
+    shareHeading: "Nội dung chia sẻ",
+    copy: "Sao chép",
+    copied: "Đã sao chép",
+    close: "Đóng",
+    resume: "Tiếp tục bản nháp",
+    resumeHint: "Máy này còn một bản tính dở. Số liệu chỉ lưu trên trình duyệt của bạn.",
+    fresh: "Tính mới",
+    asideTitle: "Ước tính thuế TNCN, rõ từng bậc.",
+    trust1: "Theo Luật 109/2025/QH15, hiệu lực 01/07/2026.",
+    trust2: "Tính ngay trên máy — không gửi dữ liệu đi đâu.",
+    trust3: "Lương, hộ kinh doanh, cho thuê, chứng khoán và các khoản khác.",
+    asideFoot: "Công cụ tham khảo, không thay tư vấn thuế.",
+    langAria: "Đổi ngôn ngữ",
+    amount: "Số tiền",
+    taxableWord: "Thu nhập tính thuế",
+    taxWord: "Thuế",
+    exemptTag: "Miễn thuế",
+    gainWord: "Chênh lệch tính thuế",
+    emptyHeroNote: "Chưa có số thuế phải nộp với các nguồn đang chọn.",
+    residentShort: "Cư trú",
+    nonresidentShort: "Không cư trú",
+    shareRes: "Đối tượng",
+    inc_salary: "Tiền lương / tiền công",
+    inc_business: "Kinh doanh cá thể",
+    inc_rental: "Cho thuê bất động sản",
+    inc_securities: "Chứng khoán",
+    inc_dividends: "Cổ tức / đầu tư vốn",
+    inc_equity: "Chuyển nhượng vốn",
+    inc_realestate: "Bán bất động sản",
+    inc_prizes: "Trúng thưởng",
+    inc_royalties: "Bản quyền / nhượng quyền",
+    inc_inheritance: "Thừa kế / quà tặng",
+    inc_other: "Tài sản số / vàng miếng"
+  },
+  en: {
+    stepOf: "Step {i} / {n}",
+    back: "Back",
+    continue: "Continue",
+    done: "Done",
+    start: "Start",
+    estimated: "Estimated tax",
+    running: "Running total",
+    sourcesCount: "{n} income sources selected",
+    whoAreYou: "Which kind of taxpayer are you?",
+    resident: "Resident individual",
+    residentSub: "In Vietnam ≥183 days a year, or a registered place to live",
+    nonresident: "Non-resident individual",
+    nonresidentSub: "Fewer than 183 days a year in Vietnam",
+    welcomeTitle: "Personal income tax 2026",
+    brandLine: "Personal income tax, on your device.",
+    flowTitle: "From salary to take-home",
+    flowDeds: "Personal deductions",
+    whyZero: "After insurance and deductions, nothing is left to tax.",
+    bracketDetails: "Bracket detail",
+    statIncome: "Income",
+    statRate: "Effective rate",
+    statNet: "After tax",
+    welcomeKicker: "Taxpayer status",
+    selectTitle: "Which income do you have?",
+    selectSub: "Select every source that applies this tax year",
+    stepSelect: "Income sources",
+    stepResults: "Results",
+    stepForm: "Details",
+    nonResBanner: "Non-residents: salary is taxed at a flat 20% of gross pay. Personal and dependent deductions do not apply.",
+    exemptionsTitle: "Common exemptions",
+    ex1: "Property or registered assets transferred between spouses, parents and biological or adopted children, grandparents and grandchildren, siblings, or parents-in-law and children-in-law.",
+    ex2: "The seller’s only house or residential land in Vietnam.",
+    ex3: "Bank deposit interest, government bond interest, and local-government bond interest.",
+    ex4: "Life insurance policy returns.",
+    ex5: "Remittances from overseas Vietnamese.",
+    ex6: "Night-shift premium and overtime premium above the normal rate.",
+    ex7: "Social-insurance pension.",
+    ex8: "Scholarships.",
+    ex9: "Compensation paid under an insurance contract.",
+    ex10: "Household income from direct, unprocessed agricultural production.",
+    ex11: "Startup investor or founder income — 5-year exemption (Article 5).",
+    ex12: "Casino winnings.",
+    ex13: "Post-corporate-tax income of sole proprietors and single-member LLC owners (Article 4, clause 21).",
+    grossMonth: "Monthly income (gross, before tax)",
+    grossYear: "Annual income (gross, before tax)",
+    periodLabel: "Enter as",
+    month: "Month",
+    year: "Year",
+    insTitle: "Social, health, and unemployment insurance",
+    insAuto: "Automatic (8% + 1.5% + 1% = 10.5% of salary)",
+    insManual: "Enter the employee insurance paid this year",
+    ceilingNote: "Social insurance has a salary ceiling. If your pay is above it, enter the actual amount from your payslip.",
+    depTitle: "Dependents",
+    depHelp: "Each dependent: deduct {m}/month ({y}/year).",
+    charityTitle: "Charity, healthcare, and education",
+    charityYes: "Yes — amount this year (invoice required)",
+    charityNo: "No",
+    sumGross: "Annual salary",
+    sumIns: "Insurance",
+    sumPersonal: "Personal deduction",
+    sumDep: "Dependent deduction ({n})",
+    sumCharity: "Charity / health / education",
+    sumTaxable: "Taxable income",
+    sumTax: "Estimated PIT",
+    ofIncome: "(~{p} of income)",
+    noTaxHappy: "No personal income tax due",
+    enterAmount: "Enter an amount to see the estimate.",
+    bracketTitle: "Progressive brackets",
+    deductible: "Deductions",
+    br1: "Bracket 1 (5%)", br2: "Bracket 2 (10%)", br3: "Bracket 3 (20%)", br4: "Bracket 4 (30%)", br5: "Bracket 5 (35%)",
+    colBracket: "Bracket", colPart: "Income in bracket", colRate: "Rate", colTax: "Tax",
+    nonResSalary: "Non-resident: tax = total salary × 20%. No personal deduction, insurance deduction, or dependents.",
+    flat20: "Flat rate 20%",
+    bizType: "Business type",
+    biz_goods: "Goods distribution and supply (0.5%)",
+    biz_services: "Services, construction without materials (2%)",
+    biz_rental_agent: "Asset leasing, insurance / lottery / MLM agents (5%)",
+    biz_manufacturing: "Manufacturing, transport, construction with materials (1.5%)",
+    biz_digital: "Digital content products and services (5%)",
+    biz_other: "Other business (1%)",
+    revenue: "Annual revenue",
+    atThreshold: "Exactly at the 500 million threshold — no tax yet.",
+    exemptBiz: "Revenue of 500 million or less: business PIT is fully exempt.",
+    smartTip: "Revenue of 500 million or less per year → business PIT is fully exempt.",
+    methodTitle: "How to calculate",
+    methodFlat: "Flat rate on revenue (simpler)",
+    methodCost: "Actual costs",
+    flatFormula: "Tax = (Revenue − 500 million) × {p}",
+    costFormula: "Tax = (Revenue − Costs) × {p}",
+    costs: "Deductible costs this year",
+    forcedCost: "Revenue above 3 billion: only the cost method applies. Rate {p} on taxable income (revenue minus costs).",
+    compare: "At this revenue, the flat method is {flat} — the cost method is {cost}.",
+    shouldPick: "The lower figure is better: {name}.",
+    pickFlat: "flat rate",
+    pickCost: "actual costs",
+    pickEither: "Both methods produce the same tax.",
+    costsHint: "Enter real costs for a fair comparison. With costs at 0, the cost method is almost always higher.",
+    exemptRental: "Rental revenue of 500 million or less: PIT is exempt.",
+    rentalRevenue: "Total rental revenue this year",
+    rentalFormula: "Tax = (Revenue − 500 million) × 5%",
+    accommodation: "This is a registered lodging business (hotel, hostel, homestay, or registered Airbnb). If checked, ordinary business rules apply instead of the 5% rental formula.",
+    accType: "Business type used for lodging",
+    secValue: "Total securities sale value this year",
+    secHint: "Shares, bonds, and fund certificates.",
+    secFormula: "Tax = total sale value × 0.1%",
+    secNote: "The exchange usually withholds this tax. Check your statement so you do not declare it twice.",
+    divValue: "Dividends and capital-investment income received this year",
+    divFormula: "Tax = total income × 5%",
+    divWarnTitle: "Do not include",
+    divWarn1: "Bank deposit interest — exempt",
+    divWarn2: "Government and local bond interest — exempt",
+    divWarn3: "Life insurance policy returns — exempt",
+    eqSale: "Transfer price",
+    eqAsk: "Do you know the cost (original purchase price)?",
+    eqYes: "Yes — 20% of the gain",
+    eqNo: "No — 2% of the transfer price",
+    eqBasis: "Cost basis",
+    eqExp: "Related expenses",
+    eqFormulaCost: "Tax = (Transfer price − Cost − Expenses) × 20%",
+    eqFormulaFlat: "Tax = transfer price × 2%",
+    eqLoss: "Cost and expenses are not below the sale price — no tax.",
+    rePrice: "Property transfer price",
+    reCheck: "Check exemption conditions",
+    reFamily: "Transfer to a spouse, parent, biological or adopted child, grandparent, sibling, parent-in-law, or child-in-law — exempt",
+    reOnly: "This is my only house or residential land in Vietnam — exempt",
+    reFormula: "Tax = transfer price × 2%",
+    exemptRe: "Property transfer is exempt",
+    prizeValue: "Prize value received",
+    prizeKind: "Prize type",
+    prizeNormal: "Lottery, promotion, betting, contest, or prize game",
+    prizeCasino: "Casino — exempt",
+    casinoExempt: "Casino winnings are exempt from PIT.",
+    prizeBelow: "Prize is 20 million or less — no tax.",
+    prizeMath: "Taxable amount = value − 20 million. Tax = that amount × 10%.",
+    royKind: "Income type",
+    royRoyalty: "Royalty (IP transfer, technology transfer)",
+    royFranchise: "Commercial franchise",
+    royValue: "Contract value",
+    royPer: "Applied per contract.",
+    royBelow: "Contract value is 20 million or less — below the tax threshold.",
+    royMath: "Taxable amount = value − 20 million. Tax = that amount × 5%.",
+    inhCheck: "Check the exemption first",
+    inhFamily: "Received from a spouse, biological or adoptive parent, biological or adopted child, grandparent, or sibling — exempt",
+    inhKind: "Asset type",
+    inhSec: "Securities or equity interest",
+    inhRe: "Real estate",
+    inhOther: "Other asset that must be registered",
+    inhValue: "Asset value",
+    inhMath: "Tax = (Value − 20 million) × 10%",
+    inhBelow: "Value is 20 million or less — no tax.",
+    exemptInh: "Inheritance or gift is exempt",
+    othKind: "Other income type",
+    othDigital: "Digital assets (crypto, NFT, tokens…)",
+    othGold: "Gold bars",
+    othDomain: ".vn domain transfer",
+    othPlate: "Auctioned licence plate",
+    othCarbon: "Carbon credit transfer (2nd transfer onward)",
+    othValue: "Total transfer or transaction value",
+    othFull: "Tax = total value × 0.1%. Cost is not deducted.",
+    othGoldNote: "The Government may set a gold-bar threshold by decree. This estimate applies 0.1% to the full transfer value under the law.",
+    othFirst: "This is the first carbon-credit transfer — exempt",
+    othCarbonExempt: "The first carbon-credit transfer is exempt.",
+    othMath: "Tax = (Value − 20 million) × 5% per occurrence.",
+    othBelow: "Value is 20 million or less — no tax.",
+    heroTitle: "Estimated PIT for 2026",
+    effective: "Effective rate: {p}",
+    netLabel: "Net income (after tax)",
+    netFoot: "Salary net also subtracts employee insurance. Other sources are the declared value minus tax, and do not subtract business costs unless you used the cost method.",
+    zeroHero: "You have no personal income tax to pay",
+    takeHome: "Take-home pay",
+    avgMonth: "Average month",
+    insLine: "Insurance ({p})",
+    pitLine: "PIT",
+    salaryNetTitle: "Salary take-home",
+    notesTitle: "Important notes",
+    note1: "This is an estimate, not an official tax finalisation.",
+    note2: "Based on Law 109/2025/QH15, effective 1 July 2026.",
+    note3: "The personal deduction may be adjusted with CPI.",
+    note4: "File officially at thuedientu.gdt.gov.vn",
+    edit: "Edit",
+    editThis: "Edit this item",
+    editSources: "Edit income sources",
+    reset: "Start over",
+    resetAsk: "Clear every figure you entered?",
+    resetYes: "Clear and start over",
+    cancel: "Cancel",
+    share: "Share result",
+    shareHeading: "Share text",
+    copy: "Copy",
+    copied: "Copied",
+    close: "Close",
+    resume: "Continue draft",
+    resumeHint: "This device has an unfinished calculation. Figures stay in your browser only.",
+    fresh: "Start fresh",
+    asideTitle: "A clear PIT estimate, bracket by bracket.",
+    trust1: "Under Law 109/2025/QH15, effective 1 July 2026.",
+    trust2: "Calculated on your device — nothing is uploaded.",
+    trust3: "Salary, sole traders, rent, securities, and other income.",
+    asideFoot: "A reference tool, not tax advice.",
+    langAria: "Change language",
+    amount: "Amount",
+    taxableWord: "Taxable income",
+    taxWord: "Tax",
+    exemptTag: "Exempt",
+    gainWord: "Taxable gain",
+    emptyHeroNote: "No tax to pay on the sources you selected.",
+    residentShort: "Resident",
+    nonresidentShort: "Non-resident",
+    shareRes: "Status",
+    inc_salary: "Salary and wages",
+    inc_business: "Sole trader",
+    inc_rental: "Property rental",
+    inc_securities: "Stocks and bonds",
+    inc_dividends: "Dividends",
+    inc_equity: "Company equity",
+    inc_realestate: "Property sale",
+    inc_prizes: "Prize winnings",
+    inc_royalties: "Royalties and franchise",
+    inc_inheritance: "Inheritance and gifts",
+    inc_other: "Digital assets and gold"
+  }
+};
+
+const STORAGE_KEY = "viettax_2026_draft";
+const LANG_KEY = "viettax_lang";
+
+function defaultData() {
+  return {
+    salary: { period: "month", grossMonthly: 0, annualInput: 0, useAutoInsurance: true, manualInsurance: 0, dependents: 0, hasCharity: false, charityDeductions: 0 },
+    business: { annualRevenue: 0, businessType: "other", method: "flat", annualCosts: 0 },
+    rental: { annualRevenue: 0, isAccommodation: false, businessType: "services", method: "flat", annualCosts: 0 },
+    securities: { totalSaleValue: 0 },
+    dividends: { totalIncome: 0 },
+    equity: { salePrice: 0, knowsCost: false, purchasePrice: 0, expenses: 0 },
+    realestate: { salePrice: 0, isFamily: false, isOnlyHome: false },
+    prizes: { prizeValue: 0, isCasino: false },
+    royalties: { contractValue: 0, type: "royalty" },
+    inheritance: { assetValue: 0, isExempt: false, assetKind: "securities" },
+    other: { incomeType: "digital_asset", totalValue: 0, firstCarbon: false }
+  };
+}
+
+const state = {
+  lang: "vi",
+  step: "welcome",
+  formKey: null,
+  residency: "resident",
+  selected: [],
+  incomeData: defaultData(),
+  dir: 1,
+  motion: false,
+  modal: null,
+  confirmReset: false,
+  returnTo: null,
+  hasDraft: false,
+  copyFlash: false
+};
+
+function t(key, vars) {
+  let s = (STRINGS[state.lang] && STRINGS[state.lang][key]) || STRINGS.vi[key] || key;
+  if (vars) {
+    Object.keys(vars).forEach((k) => { s = s.split("{" + k + "}").join(String(vars[k])); });
+  }
+  return s;
+}
+function tOther(key) {
+  const lang = state.lang === "vi" ? "en" : "vi";
+  return STRINGS[lang][key] || key;
+}
+function esc(s) {
+  return String(s)
+    .replace(/\u0026/g, "\u0026amp;")
+    .replace(/</g, "\u0026lt;")
+    .replace(/>/g, "\u0026gt;")
+    .replace(/"/g, "\u0026quot;")
+    .replace(/'/g, "\u0026#39;");
+}
+function h(key, vars) { return esc(t(key, vars)); }
+function fmtVND(n) {
+  return Math.round(Number(n) || 0).toLocaleString("vi-VN") + " đ";
+}
+function fmtPct(rate) {
+  const n = Math.round(rate * 1000) / 10;
+  const s = Number.isInteger(n) ? String(n) : n.toFixed(1);
+  return s + "%";
+}
+function parseVND(str) {
+  return parseInt(String(str || "").replace(/[^\d]/g, "") || "0", 10);
+}
+function isResident() { return state.residency === "resident"; }
+
+function computeOne(key) {
+  const d = state.incomeData[key];
+  switch (key) {
+    case "salary": return Tax.salary(d, isResident());
+    case "business": return Tax.business(d);
+    case "rental": return Tax.rental(d);
+    case "securities": return Tax.securities(d);
+    case "dividends": return Tax.dividends(d);
+    case "equity": return Tax.equity(d);
+    case "realestate": return Tax.realestate(d);
+    case "prizes": return Tax.prizes(d);
+    case "royalties": return Tax.royalties(d);
+    case "inheritance": return Tax.inheritance(d);
+    case "other": return Tax.other(d);
+    default: return { tax: 0 };
+  }
+}
+function selectedOrder() {
+  return INCOME_ORDER.filter((k) => state.selected.includes(k));
+}
+function baseOf(key, data, result) {
+  if (key === "salary") return result.annual || 0;
+  if (key === "business" || key === "rental") return data.annualRevenue || 0;
+  if (key === "securities") return data.totalSaleValue || 0;
+  if (key === "dividends") return data.totalIncome || 0;
+  if (key === "equity" || key === "realestate") return data.salePrice || 0;
+  if (key === "prizes") return data.prizeValue || 0;
+  if (key === "royalties") return data.contractValue || 0;
+  if (key === "inheritance") return data.assetValue || 0;
+  if (key === "other") return data.totalValue || 0;
+  return 0;
+}
+function portfolio() {
+  const results = {};
+  let tax = 0, base = 0, net = 0;
+  selectedOrder().forEach((key) => {
+    const r = computeOne(key);
+    results[key] = r;
+    const b = baseOf(key, state.incomeData[key], r);
+    base += b;
+    tax += r.tax || 0;
+    if (key === "salary") net += r.net || 0;
+    else if ((key === "business" || (key === "rental" && r.accommodation)) && r.method === "cost") net += Math.max(0, (r.taxable || 0) - (r.tax || 0));
+    else net += b - (r.tax || 0);
+  });
+  return { results, tax, base, net, effective: base > 0 ? tax / base : 0 };
+}
+function flowKeys() {
+  return ["welcome", "select"].concat(selectedOrder(), ["results"]);
+}
+function currentIndex() {
+  const f = flowKeys();
+  if (state.step === "welcome") return 0;
+  if (state.step === "select") return 1;
+  if (state.step === "results") return f.length - 1;
+  const i = f.indexOf(state.formKey);
+  return i < 0 ? 1 : i;
+}
+function goToIndex(i, dir) {
+  const f = flowKeys();
+  const dest = f[Math.max(0, Math.min(f.length - 1, i))];
+  state.dir = dir;
+  state.motion = true;
+  state.confirmReset = false;
+  if (dest === "welcome" || dest === "select" || dest === "results") {
+    state.step = dest;
+    state.formKey = null;
+    if (dest !== "results") state.returnTo = null;
+  } else {
+    state.step = "form";
+    state.formKey = dest;
+  }
+  saveState();
+  render();
+}
+function goDelta(d) {
+  if (state.returnTo === "results" && state.step === "form") {
+    state.returnTo = null;
+    state.step = "results";
+    state.formKey = null;
+    state.dir = d;
+    state.motion = true;
+    saveState();
+    render();
+    return;
+  }
+  goToIndex(currentIndex() + d, d);
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({
+      residency: state.residency,
+      selectedIncomes: state.selected,
+      incomeData: state.incomeData,
+      step: state.step,
+      formKey: state.formKey
+    }));
+  } catch (e) { /* private mode */ }
+}
+function loadSavedState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object") return false;
+    state.residency = parsed.residency === "non-resident" ? "non-resident" : "resident";
+    const base = defaultData();
+    state.incomeData = base;
+    if (parsed.incomeData) {
+      Object.keys(base).forEach((k) => {
+        state.incomeData[k] = Object.assign({}, base[k], parsed.incomeData[k] || {});
+      });
+    }
+    state.selected = Array.isArray(parsed.selectedIncomes)
+      ? parsed.selectedIncomes.filter((k) => INCOME_ORDER.includes(k))
+      : [];
+    state.step = parsed.step || "welcome";
+    state.formKey = parsed.formKey || null;
+    if (state.step === "form" && !state.selected.includes(state.formKey)) {
+      state.step = "select";
+      state.formKey = null;
+    }
+    const meaningful = state.selected.length > 0 || JSON.stringify(state.incomeData) !== JSON.stringify(defaultData());
+    return meaningful;
+  } catch (e) { return false; }
+}
+function resetAll() {
+  state.step = "welcome";
+  state.formKey = null;
+  state.residency = "resident";
+  state.selected = [];
+  state.incomeData = defaultData();
+  state.modal = null;
+  state.confirmReset = false;
+  state.returnTo = null;
+  state.hasDraft = false;
+  state.motion = true;
+  state.dir = -1;
+  try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+  render();
+}
+
+function setPath(path, value) {
+  const parts = path.split(".");
+  let cur = state.incomeData;
+  for (let i = 0; i < parts.length - 1; i++) cur = cur[parts[i]];
+  cur[parts[parts.length - 1]] = value;
+}
+function applyConstraints() {
+  const b = state.incomeData.business;
+  if ((b.annualRevenue || 0) > 3000000000) b.method = "cost";
+  const r = state.incomeData.rental;
+  if (r.isAccommodation && (r.annualRevenue || 0) > 3000000000) r.method = "cost";
+}
+
+function tick(on) {
+  if (on) return '<span class="tick" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 20 20"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>';
+  return '<span class="tick empty" aria-hidden="true"></span>';
+}
+function flagMark(size) {
+  const s = size || 48;
+  return '<svg width="' + s + '" height="' + s + '" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#DA251D"/><polygon fill="#FFCD00" points="32,12 36.9,26.2 52,26.4 39.8,35.4 44.4,49.6 32,41 19.6,49.6 24.2,35.4 12,26.4 27.1,26.2"/></svg>';
+}
+function moneyField(id, path, value, label) {
+  const shown = value ? Math.round(value).toLocaleString("vi-VN") : "";
+  return '<div class="field"><label for="' + id + '">' + esc(label) + '</label><div class="money-wrap"><input class="money num" id="' + id + '" type="text" inputmode="numeric" autocomplete="off" autocorrect="off" spellcheck="false" data-money="' + path + '" value="' + shown + '" placeholder="0" aria-label="' + esc(label) + '"><span class="suffix">VND</span></div></div>';
+}
+function banner(kind, text) {
+  return '<div class="banner ' + kind + '" role="status"><strong>' + h(kind === "ok" ? "exemptTag" : "notesTitle") + '</strong>' + esc(text) + '</div>';
+}
+function summaryCard(title, rows, tax, footnote, exemptText) {
+  let body = rows.map((r) => {
+    const cls = r.neg ? "neg" : (r.total ? "total" : "");
+    return '<div class="row ' + cls + '"><span>' + esc(r.label) + '</span><b class="num">' + esc(r.value) + '</b></div>';
+  }).join("");
+  let extra = "";
+  if (exemptText) extra += '<div class="banner ok" role="status"><strong>' + h("exemptTag") + '</strong>' + esc(exemptText) + '</div>';
+  if (footnote) extra += '<p class="foot-note num">' + esc(footnote) + '</p>';
+  return '<div class="card" aria-live="polite"><h3>' + esc(title) + '</h3>' + body + extra + '</div>';
+}
+function barBlock(segments) {
+  const sum = segments.reduce((s, x) => s + x.amount, 0);
+  if (sum <= 0) return "";
+  const bar = '<div class="bar" role="img" aria-label="' + h("bracketTitle") + '">' + segments.map((s) => '<i style="width:' + (s.amount / sum * 100) + '%;background:' + s.color + '"></i>').join("") + '</div>';
+  const legend = '<div class="bar-legend">' + segments.map((s) => '<div><span class="sw" style="background:' + s.color + '"></span><span>' + esc(s.label) + '</span><b class="num">' + esc(fmtVND(s.amount)) + (s.tax != null ? ' · ' + esc(fmtVND(s.tax)) : '') + '</b></div>').join("") + '</div>';
+  return bar + legend;
+}
+
+function progressModel() {
+  const forms = selectedOrder();
+  const total = 2 + forms.length + 1;
+  if (state.step === "welcome") return { i: 1, total, label: t("welcomeKicker") };
+  if (state.step === "select") return { i: 2, total, label: t("stepSelect") };
+  if (state.step === "results") return { i: total, total, label: t("stepResults") };
+  const idx = forms.indexOf(state.formKey);
+  return { i: 3 + Math.max(0, idx), total, label: t("inc_" + state.formKey) };
+}
+
+function renderWelcome() {
+  const draft = state.hasDraft ? '<div class="banner info"><strong>' + h("resume") + '</strong>' + h("resumeHint") + '<div class="split" style="margin-top:12px"><button type="button" class="btn btn-primary" data-action="resume">' + h("resume") + '</button><button type="button" class="btn btn-ghost" data-action="fresh">' + h("fresh") + '</button></div></div>' : "";
+  const ex = [1,2,3,4,5,6,7,8,9,10,11,12,13].map((n) => "<li>" + h("ex" + n) + "</li>").join("");
+  return '<div class="intro"><div class="hero-mark">' + logoMark(48) + '<div><div class="word">VietTax</div><div class="word-sub">' + h("brandLine") + '</div></div></div>'
+    + '<p class="lede">' + h("welcomeTitle") + '</p>'
+    + '<div class="badge"><span class="badge-dot" aria-hidden="true"></span>' + esc(LAW_BADGE) + '</div></div>'
+    + draft
+    + '<h1 class="q">' + h("whoAreYou") + '</h1>'
+    + '<div class="stack" role="radiogroup" aria-label="' + h("whoAreYou") + '">'
+    + residencyCard("resident") + residencyCard("non-resident")
+    + '</div>'
+    + '<div style="height:12px"></div>'
+    + '<button type="button" class="btn btn-primary btn-block" data-action="start">' + h("start") + '</button>'
+    + '<details class="fold"><summary>' + h("exemptionsTitle") + '</summary><ul class="ex">' + ex + '</ul></details>';
+}
+function residencyCard(value) {
+  const on = state.residency === value;
+  const title = value === "resident" ? "resident" : "nonresident";
+  const sub = value === "resident" ? "residentSub" : "nonresidentSub";
+  const glyph = value === "resident" ? "home" : "plane";
+  return '<label class="choice"><input class="sr-only" type="radio" name="residency" value="' + value + '"' + (on ? " checked" : "") + '><span class="mark">' + iconSvg(glyph) + '</span><span class="choice-copy"><strong>' + h(title) + '</strong><span class="sub">' + h(sub) + '</span></span>' + tick(on) + '</label>';
+}
+function renderSelect() {
+  const cards = INCOME_ORDER.map((id) => {
+    const on = state.selected.includes(id);
+    return '<label class="pick"><input class="sr-only" type="checkbox" data-income="' + id + '"' + (on ? " checked" : "") + '><span class="mark">' + iconSvg(id) + '</span>' + (on ? '<span class="pick-tick">' + tick(true) + '</span>' : '') + '<strong>' + h("inc_" + id) + '</strong><span class="sub">' + esc(tOther("inc_" + id)) + '</span></label>';
+  }).join("");
+  const note = !isResident() ? banner("info", t("nonResBanner")) : "";
+  const ex = [1,2,3,4,5,6,7,8,9,10,11,12,13].map((n) => "<li>" + h("ex" + n) + "</li>").join("");
+  return '<div class="sources-head"><h1 class="q tight">' + h("selectTitle") + '</h1><p class="lede soft">' + h("selectSub") + '</p></div>' + note + '<div class="grid">' + cards + '</div><details class="fold"><summary>' + h("exemptionsTitle") + '</summary><ul class="ex">' + ex + '</ul></details>';
+}
+
+function renderSalary() {
+  const d = state.incomeData.salary;
+  const res = isResident();
+  const shown = d.period === "year" ? d.annualInput : d.grossMonthly;
+  let html = formTitle("salary");
+  if (!res) html += banner("info", t("nonResSalary"));
+  html += '<div class="field"><span class="legend">' + h("periodLabel") + '</span><div class="seg" role="group" aria-label="' + h("periodLabel") + '">'
+    + '<button type="button" data-action="period" data-value="month" class="' + (d.period === "month" ? "on" : "") + '" aria-pressed="' + (d.period === "month") + '">' + h("month") + '</button>'
+    + '<button type="button" data-action="period" data-value="year" class="' + (d.period === "year" ? "on" : "") + '" aria-pressed="' + (d.period === "year") + '">' + h("year") + '</button>'
+    + '</div></div>';
+  html += moneyField("m-salary", "salary." + (d.period === "year" ? "annualInput" : "grossMonthly"), shown, t(d.period === "year" ? "grossYear" : "grossMonth"));
+  if (res) {
+    html += '<div class="field"><span class="legend">' + h("insTitle") + '</span>'
+      + radio("ins", "auto", d.useAutoInsurance, t("insAuto"))
+      + radio("ins", "manual", !d.useAutoInsurance, t("insManual"))
+      + '</div>';
+    if (!d.useAutoInsurance) html += moneyField("m-ins", "salary.manualInsurance", d.manualInsurance, t("insManual"));
+    html += '<p class="help">' + h("ceilingNote") + '</p>';
+    html += '<div class="field"><span class="legend">' + h("depTitle") + '</span><div class="seg" role="group">';
+    for (let n = 0; n <= 5; n++) {
+      const on = n < 5 ? d.dependents === n : d.dependents >= 5;
+      const label = n < 5 ? String(n) : (d.dependents > 5 ? String(d.dependents) : "5+");
+      html += '<button type="button" data-action="deps" data-n="' + n + '" class="' + (on ? "on" : "") + '" aria-pressed="' + on + '">' + label + '</button>';
+    }
+    html += '</div>';
+    if (d.dependents >= 5) {
+      html += '<div class="stepper"><button type="button" data-action="dep-dec" aria-label="-">−</button><strong class="num">' + d.dependents + '</strong><button type="button" data-action="dep-inc" aria-label="+">+</button></div>';
+    }
+    html += '<p class="help">' + h("depHelp", { m: fmtVND(6200000), y: fmtVND(74400000) }) + '</p></div>';
+    html += '<div class="field"><span class="legend">' + h("charityTitle") + '</span>'
+      + radio("charity", "yes", d.hasCharity, t("charityYes"))
+      + radio("charity", "no", !d.hasCharity, t("charityNo"))
+      + '</div>';
+    if (d.hasCharity) html += moneyField("m-charity", "salary.charityDeductions", d.charityDeductions, t("charityTitle"));
+  }
+  html += salarySummary(computeOne("salary"), res);
+  return html;
+}
+function radio(name, value, on, label) {
+  return '<label class="radio-line"><input type="radio" name="' + name + '" value="' + value + '"' + (on ? " checked" : "") + '><span>' + esc(label) + '</span></label>';
+}
+function salarySummary(r, res) {
+  if (!r.annual) return '<p class="help">' + h("enterAmount") + '</p>';
+  if (!res) {
+    return summaryCard(t("sumTax"), [
+      { label: t("sumGross"), value: fmtVND(r.annual) },
+      { label: t("flat20"), value: "20%" },
+      { label: t("sumTax"), value: fmtVND(r.tax), total: true }
+    ], r.tax, t("ofIncome", { p: fmtPct(r.effectiveRate) }));
+  }
+  const rows = [
+    { label: t("sumGross"), value: fmtVND(r.annual) },
+    { label: t("sumIns"), value: "−" + fmtVND(r.ins), neg: true },
+    { label: t("sumPersonal"), value: "−" + fmtVND(r.personalDeduction), neg: true },
+    { label: t("sumDep", { n: state.incomeData.salary.dependents || 0 }), value: r.depDeduction ? "−" + fmtVND(r.depDeduction) : fmtVND(0), neg: !!r.depDeduction }
+  ];
+  if (r.charity) rows.push({ label: t("sumCharity"), value: "−" + fmtVND(r.charity), neg: true });
+  rows.push({ label: t("sumTaxable"), value: fmtVND(r.taxable) });
+  rows.push({ label: t("sumTax"), value: fmtVND(r.tax), total: true });
+  let html = summaryCard(t("sumTax"), rows, r.tax, r.annual ? t("ofIncome", { p: fmtPct(r.effectiveRate) }) : "");
+  if (r.taxable <= 0) html += '<div class="banner ok" role="status"><strong>' + h("noTaxHappy") + '</strong></div>';
+  const segs = [];
+  const ded = (r.ins || 0) + (r.personalDeduction || 0) + (r.depDeduction || 0) + (r.charity || 0);
+  if (ded > 0) segs.push({ amount: ded, color: "#D9D3C7", label: t("deductible") });
+  paintBrackets(r.taxable || 0).forEach((b) => segs.push(b));
+  if (segs.length) {
+    html += '<section class="brackets"><h2>' + h("bracketTitle") + '</h2>' + barBlock(segs) + '<details class="fold"><summary>' + h("bracketDetails") + '</summary>' + bracketTable(r.taxable) + '</details></section>';
+  }
+  return html;
+}
+function bracketTable(taxable) {
+  const rows = Tax.bracketBreakdown(taxable || 0);
+  if (!rows.length) return "";
+  return '<table class="grid-table"><thead><tr><th>' + h("colBracket") + '</th><th>' + h("colPart") + '</th><th>' + h("colRate") + '</th><th>' + h("colTax") + '</th></tr></thead><tbody>'
+    + rows.map((b) => '<tr><td>' + h("br" + b.id) + '</td><td class="num">' + esc(fmtVND(b.amount)) + '</td><td class="num">' + fmtPct(b.rate) + '</td><td class="num">' + esc(fmtVND(b.tax)) + '</td></tr>').join("")
+    + '</tbody></table>';
+}
+
+function bizTypeOptions(selected) {
+  return ["goods","services","rental_agent","manufacturing","digital","other"].map((id) => {
+    return '<option value="' + id + '"' + (selected === id ? " selected" : "") + '>' + h("biz_" + id) + '</option>';
+  }).join("");
+}
+function renderBusinessLike(kind) {
+  const d = state.incomeData[kind];
+  const rev = d.annualRevenue || 0;
+  const isRent = kind === "rental";
+  let html = formTitle(kind);
+  if (isRent) {
+    html += moneyField("m-rev", "rental.annualRevenue", rev, t("rentalRevenue"));
+    if (!rev) html += '<p class="help">' + h("smartTip") + '</p>';
+    html += '<label class="check-line"><input type="checkbox" data-check="rental.isAccommodation"' + (d.isAccommodation ? " checked" : "") + '><span>' + h("accommodation") + '</span></label>';
+    if (!d.isAccommodation) {
+      if (rev === 500000000) html += banner("ok", t("atThreshold"));
+      else if (rev > 0 && rev < 500000000) html += banner("ok", t("exemptRental"));
+      else if (rev > 500000000) html += '<p class="help">' + h("rentalFormula") + '</p>';
+      const r = computeOne("rental");
+      html += simpleResult(rev, r, t("exemptRental"));
+      return html;
+    }
+    html += '<div class="field"><label for="acc-type">' + h("accType") + '</label><select class="ctrl" id="acc-type" data-select="rental.businessType">' + bizTypeOptions(d.businessType) + '</select></div>';
+  } else {
+    html += moneyField("m-rev", "business.annualRevenue", rev, t("revenue"));
+    if (!rev) return html + '<p class="help">' + h("smartTip") + '</p><p class="help">' + h("enterAmount") + '</p>';
+    if (rev === 500000000) return html + banner("ok", t("atThreshold")) + simpleResult(rev, computeOne(kind));
+    if (rev < 500000000) return html + banner("ok", t("exemptBiz")) + simpleResult(rev, computeOne(kind));
+    html += '<div class="field"><label for="biz-type">' + h("bizType") + '</label><select class="ctrl" id="biz-type" data-select="business.businessType">' + bizTypeOptions(d.businessType) + '</select></div>';
+  }
+  const prefix = isRent ? "rental" : "business";
+  if (rev === 0) return html + '<p class="help">' + h("enterAmount") + '</p>';
+  if (rev === 500000000) return html + banner("ok", t("atThreshold")) + simpleResult(rev, computeOne(kind));
+  if (rev < 500000000) return html + banner("ok", t("exemptBiz")) + simpleResult(rev, computeOne(kind));
+  const forced = rev > 3000000000;
+  const method = forced ? "cost" : (d.method || "flat");
+  const rateFlat = { goods: 0.005, services: 0.02, rental_agent: 0.05, manufacturing: 0.015, digital: 0.05, other: 0.01 }[d.businessType] || 0.01;
+  const rateCost = rev > 50000000000 ? 0.20 : rev > 3000000000 ? 0.17 : 0.15;
+  html += '<div class="field"><span class="legend">' + h("methodTitle") + '</span>';
+  html += '<label class="radio-line"><input type="radio" name="method" value="flat"' + (method === "flat" ? " checked" : "") + (forced ? " disabled" : "") + '><span>' + h("methodFlat") + '<br><span class="sub">' + h("flatFormula", { p: fmtPct(rateFlat) }) + '</span></span></label>';
+  html += '<label class="radio-line"><input type="radio" name="method" value="cost"' + (method === "cost" ? " checked" : "") + '><span>' + h("methodCost") + '<br><span class="sub">' + h("costFormula", { p: fmtPct(rateCost) }) + '</span></span></label>';
+  html += '</div>';
+  if (forced) html += banner("warn", t("forcedCost", { p: fmtPct(rateCost) }));
+  if (method === "cost" || forced) html += moneyField("m-cost", prefix + ".annualCosts", d.annualCosts || 0, t("costs"));
+  if (!forced) {
+    const flat = Tax.business({ annualRevenue: rev, method: "flat", businessType: d.businessType, annualCosts: d.annualCosts });
+    const cost = Tax.business({ annualRevenue: rev, method: "cost", businessType: d.businessType, annualCosts: d.annualCosts });
+    let pick = flat.tax < cost.tax ? t("pickFlat") : cost.tax < flat.tax ? t("pickCost") : "";
+    html += '<div class="banner info"><strong>' + h("methodTitle") + '</strong>' + h("compare", { flat: fmtVND(flat.tax), cost: fmtVND(cost.tax) }) + ' ' + (pick ? h("shouldPick", { name: pick }) : h("pickEither")) + ((d.annualCosts || 0) === 0 ? '<br>' + h("costsHint") : '') + '</div>';
+  }
+  html += simpleResult(rev, computeOne(kind));
+  return html;
+}
+function simpleResult(amount, r, exemptLabel) {
+  if (!amount) return '<p class="help">' + h("enterAmount") + '</p>';
+  const rows = [{ label: t("revenue"), value: fmtVND(amount) }];
+  if (r.taxable != null) rows.push({ label: t("taxableWord"), value: fmtVND(r.taxable) });
+  if (r.rate) rows.push({ label: t("colRate"), value: fmtPct(r.rate) });
+  rows.push({ label: t("taxWord"), value: fmtVND(r.tax || 0), total: true });
+  let html = summaryCard(t("sumTax"), rows);
+  if ((r.tax || 0) === 0) html += '<div class="banner ok" role="status"><strong>' + h("noTaxHappy") + '</strong>' + (r.atThreshold ? esc(t("atThreshold")) : "") + '</div>';
+  return html;
+}
+function renderRental() { return renderBusinessLike("rental"); }
+function renderBusiness() { return renderBusinessLike("business"); }
+
+function renderSecurities() {
+  const d = state.incomeData.securities;
+  const r = computeOne("securities");
+  return formTitle("securities")
+    + moneyField("m-sec", "securities.totalSaleValue", d.totalSaleValue, t("secValue"))
+    + '<p class="help">' + h("secHint") + '</p><p class="help">' + h("secFormula") + '</p>'
+    + banner("info", t("secNote"))
+    + simpleMoneyResult(d.totalSaleValue, r.tax);
+}
+function renderDividends() {
+  const d = state.incomeData.dividends;
+  const r = computeOne("dividends");
+  return formTitle("dividends")
+    + moneyField("m-div", "dividends.totalIncome", d.totalIncome, t("divValue"))
+    + '<p class="help">' + h("divFormula") + '</p>'
+    + '<div class="banner warn"><strong>' + h("divWarnTitle") + '</strong><ul class="clean"><li>' + h("divWarn1") + '</li><li>' + h("divWarn2") + '</li><li>' + h("divWarn3") + '</li></ul></div>'
+    + simpleMoneyResult(d.totalIncome, r.tax);
+}
+function renderEquity() {
+  const d = state.incomeData.equity;
+  const r = computeOne("equity");
+  let html = formTitle("equity")
+    + moneyField("m-eq", "equity.salePrice", d.salePrice, t("eqSale"))
+    + '<div class="field"><span class="legend">' + h("eqAsk") + '</span>'
+    + radio("knows", "no", !d.knowsCost, t("eqNo"))
+    + radio("knows", "yes", d.knowsCost, t("eqYes"))
+    + '</div>';
+  if (d.knowsCost) {
+    html += moneyField("m-pp", "equity.purchasePrice", d.purchasePrice, t("eqBasis"));
+    html += moneyField("m-ex", "equity.expenses", d.expenses, t("eqExp"));
+    html += '<p class="help">' + h("eqFormulaCost") + '</p>';
+    if ((r.gain || 0) === 0 && d.salePrice > 0) html += banner("ok", t("eqLoss"));
+  } else html += '<p class="help">' + h("eqFormulaFlat") + '</p>';
+  html += simpleMoneyResult(d.salePrice, r.tax);
+  return html;
+}
+function renderRealestate() {
+  const d = state.incomeData.realestate;
+  const r = computeOne("realestate");
+  let html = formTitle("realestate")
+    + moneyField("m-re", "realestate.salePrice", d.salePrice, t("rePrice"))
+    + '<div class="field"><span class="legend">' + h("reCheck") + '</span>'
+    + '<label class="check-line"><input type="checkbox" data-check="realestate.isFamily"' + (d.isFamily ? " checked" : "") + '><span>' + h("reFamily") + '</span></label>'
+    + '<label class="check-line"><input type="checkbox" data-check="realestate.isOnlyHome"' + (d.isOnlyHome ? " checked" : "") + '><span>' + h("reOnly") + '</span></label>'
+    + '</div>';
+  if (r.exempt) html += banner("ok", t("exemptRe"));
+  else html += '<p class="help">' + h("reFormula") + '</p>';
+  html += simpleMoneyResult(d.salePrice, r.tax, r.exempt);
+  return html;
+}
+function renderPrizes() {
+  const d = state.incomeData.prizes;
+  const r = computeOne("prizes");
+  let html = formTitle("prizes")
+    + moneyField("m-prize", "prizes.prizeValue", d.prizeValue, t("prizeValue"))
+    + '<div class="field"><span class="legend">' + h("prizeKind") + '</span>'
+    + radio("casino", "no", !d.isCasino, t("prizeNormal"))
+    + radio("casino", "yes", d.isCasino, t("prizeCasino"))
+    + '</div>';
+  if (d.isCasino) html += banner("ok", t("casinoExempt"));
+  else if (d.prizeValue > 0 && d.prizeValue <= 20000000) html += banner("ok", t("prizeBelow"));
+  else if (d.prizeValue > 20000000) html += '<p class="help">' + h("prizeMath") + ' ' + esc(fmtVND(r.taxable)) + ' → ' + esc(fmtVND(r.tax)) + '</p>';
+  html += simpleMoneyResult(d.prizeValue, r.tax, r.exempt);
+  return html;
+}
+function renderRoyalties() {
+  const d = state.incomeData.royalties;
+  const r = computeOne("royalties");
+  let html = formTitle("royalties")
+    + '<div class="field"><span class="legend">' + h("royKind") + '</span>'
+    + radio("roytype", "royalty", d.type !== "franchise", t("royRoyalty"))
+    + radio("roytype", "franchise", d.type === "franchise", t("royFranchise"))
+    + '</div>'
+    + moneyField("m-roy", "royalties.contractValue", d.contractValue, t("royValue"))
+    + '<p class="help">' + h("royPer") + '</p>';
+  if (d.contractValue > 0 && d.contractValue <= 20000000) html += banner("ok", t("royBelow"));
+  else if (d.contractValue > 20000000) html += '<p class="help">' + h("royMath") + '</p>';
+  html += simpleMoneyResult(d.contractValue, r.tax);
+  return html;
+}
+function renderInheritance() {
+  const d = state.incomeData.inheritance;
+  const r = computeOne("inheritance");
+  let html = formTitle("inheritance")
+    + '<label class="check-line"><input type="checkbox" data-check="inheritance.isExempt"' + (d.isExempt ? " checked" : "") + '><span>' + h("inhFamily") + '</span></label>';
+  if (d.isExempt) {
+    html += banner("ok", t("exemptInh"));
+  } else {
+    html += '<div class="field"><span class="legend">' + h("inhKind") + '</span>'
+      + radio("asset", "securities", d.assetKind === "securities", t("inhSec"))
+      + radio("asset", "realestate", d.assetKind === "realestate", t("inhRe"))
+      + radio("asset", "other", d.assetKind === "other", t("inhOther"))
+      + '</div>'
+      + moneyField("m-inh", "inheritance.assetValue", d.assetValue, t("inhValue"))
+      + '<p class="help">' + h("inhMath") + '</p>';
+    if (d.assetValue > 0 && d.assetValue <= 20000000) html += banner("ok", t("inhBelow"));
+  }
+  html += simpleMoneyResult(d.assetValue, r.tax, r.exempt);
+  return html;
+}
+function renderOther() {
+  const d = state.incomeData.other;
+  const r = computeOne("other");
+  const types = [["digital_asset","othDigital"],["gold","othGold"],["domain","othDomain"],["plate","othPlate"],["carbon","othCarbon"]];
+  let html = formTitle("other") + '<div class="field"><span class="legend">' + h("othKind") + '</span>';
+  types.forEach(([id, key]) => {
+    html += radio("otype", id, d.incomeType === id, t(key));
+  });
+  html += '</div>';
+  if (d.incomeType === "carbon") {
+    html += '<label class="check-line"><input type="checkbox" data-check="other.firstCarbon"' + (d.firstCarbon ? " checked" : "") + '><span>' + h("othFirst") + '</span></label>';
+  }
+  html += moneyField("m-oth", "other.totalValue", d.totalValue, t("othValue"));
+  if (d.incomeType === "digital_asset" || d.incomeType === "gold") {
+    html += '<p class="help">' + h("othFull") + '</p>';
+    if (d.incomeType === "gold") html += banner("info", t("othGoldNote"));
+  } else if (d.incomeType === "carbon" && d.firstCarbon) {
+    html += banner("ok", t("othCarbonExempt"));
+  } else {
+    html += '<p class="help">' + h("othMath") + '</p>';
+    if (d.totalValue > 0 && d.totalValue <= 20000000) html += banner("ok", t("othBelow"));
+  }
+  html += simpleMoneyResult(d.totalValue, r.tax, r.exempt);
+  return html;
+}
+function simpleMoneyResult(amount, tax, exempt) {
+  if (!amount && !exempt) return '<p class="help">' + h("enterAmount") + '</p>';
+  let html = summaryCard(t("sumTax"), [
+    { label: t("amount"), value: fmtVND(amount || 0) },
+    { label: t("taxWord"), value: fmtVND(tax || 0), total: true }
+  ]);
+  if ((tax || 0) === 0 && amount) html += '<div class="banner ok" role="status"><strong>' + h("noTaxHappy") + '</strong></div>';
+  return html;
+}
+
+function renderForm() {
+  switch (state.formKey) {
+    case "salary": return renderSalary();
+    case "business": return renderBusiness();
+    case "rental": return renderRental();
+    case "securities": return renderSecurities();
+    case "dividends": return renderDividends();
+    case "equity": return renderEquity();
+    case "realestate": return renderRealestate();
+    case "prizes": return renderPrizes();
+    case "royalties": return renderRoyalties();
+    case "inheritance": return renderInheritance();
+    case "other": return renderOther();
+    default: return "";
+  }
+}
+
+function resultLines(key, r) {
+  const d = state.incomeData[key];
+  if (key === "salary") {
+    const rows = [{ label: t("sumGross"), value: fmtVND(r.annual || 0) }];
+    if (isResident()) {
+      rows.push({ label: t("sumIns"), value: "−" + fmtVND(r.ins || 0) });
+      rows.push({ label: t("sumPersonal"), value: "−" + fmtVND(r.personalDeduction || 0) });
+      rows.push({ label: t("sumDep", { n: d.dependents || 0 }), value: "−" + fmtVND(r.depDeduction || 0) });
+      if (r.charity) rows.push({ label: t("sumCharity"), value: "−" + fmtVND(r.charity) });
+      rows.push({ label: t("sumTaxable"), value: fmtVND(r.taxable || 0) });
+    } else rows.push({ label: t("flat20"), value: "20%" });
+    rows.push({ label: t("pitLine"), value: fmtVND(r.tax || 0) });
+    return rows;
+  }
+  const rows = [{ label: t("amount"), value: fmtVND(baseOf(key, d, r)) }];
+  if (r.exempt) rows.push({ label: t("exemptTag"), value: t("noTaxHappy") });
+  else {
+    if (r.taxable != null) rows.push({ label: t("taxableWord"), value: fmtVND(r.taxable) });
+    if (r.rate) rows.push({ label: t("colRate"), value: fmtPct(r.rate) });
+    if (r.method === "flat" && key === "equity") rows.push({ label: t("colRate"), value: "2%" });
+    if (r.method === "cost" && key === "equity") rows.push({ label: t("gainWord"), value: fmtVND(r.gain || 0) });
+  }
+  rows.push({ label: t("pitLine"), value: fmtVND(r.tax || 0) });
+  return rows;
+}
+
+function salaryFlow(r) {
+  if (!r || !r.annual) return "";
+  if (!isResident()) {
+    return '<section class="flow" aria-label="' + h("salaryNetTitle") + '"><h2>' + h("salaryNetTitle") + '</h2><ol>'
+      + '<li class="in"><i aria-hidden="true"></i><span>' + h("sumGross") + '</span><b class="num">' + esc(fmtVND(r.annual)) + '</b></li>'
+      + '<li class="tax"><i aria-hidden="true"></i><span>' + h("pitLine") + '</span><b class="num">−' + esc(fmtVND(r.tax || 0)) + '</b></li>'
+      + '<li class="net"><i aria-hidden="true"></i><span>' + h("takeHome") + '</span><b class="num">' + esc(fmtVND(r.net || 0)) + '</b></li>'
+      + '</ol><p class="flow-month"><span>' + h("avgMonth") + '</span><b class="num">' + esc(fmtVND((r.net || 0) / 12)) + '</b></p></section>';
+  }
+  const deds = (r.personalDeduction || 0) + (r.depDeduction || 0) + (r.charity || 0);
+  const steps = [
+    ["in", t("sumGross"), fmtVND(r.annual)],
+    ["out", t("sumIns"), "−" + fmtVND(r.ins || 0)],
+    ["out", t("flowDeds"), "−" + fmtVND(deds)],
+    ["mid", t("sumTaxable"), fmtVND(r.taxable || 0)],
+    ["tax", t("pitLine"), "−" + fmtVND(r.tax || 0)],
+    ["net", t("takeHome"), fmtVND(r.net || 0)]
+  ];
+  return '<section class="flow" aria-label="' + h("flowTitle") + '"><h2>' + h("flowTitle") + '</h2><ol>'
+    + steps.map((s) => '<li class="' + s[0] + '"><i aria-hidden="true"></i><span>' + esc(s[1]) + '</span><b class="num">' + esc(s[2]) + '</b></li>').join("")
+    + '</ol><p class="flow-month"><span>' + h("avgMonth") + '</span><b class="num">' + esc(fmtVND((r.net || 0) / 12)) + '</b></p></section>';
+}
+
+function renderResults() {
+  const p = portfolio();
+  const zero = p.tax <= 0;
+  const salaryOnly = state.selected.length === 1 && state.selected[0] === "salary" && isResident();
+  const phrase = zero ? h("noTaxHappy") : "";
+  const why = zero ? (salaryOnly ? h("whyZero") : h("emptyHeroNote")) : "";
+  const hero = '<section class="hero' + (zero ? " ok" : "") + '">'
+    + '<div class="eyebrow">' + h("heroTitle") + '</div>'
+    + '<div class="big num">' + esc(fmtVND(p.tax || 0)) + '</div>'
+    + '<div class="hero-phrase">' + phrase + '</div>'
+    + (why ? '<p class="hero-why">' + why + '</p>' : '')
+    + '<div class="statrow">'
+    + '<div><span>' + h("statIncome") + '</span><b class="num">' + esc(fmtVND(p.base)) + '</b></div>'
+    + '<div><span>' + h("statRate") + '</span><b class="num">' + esc(fmtPct(p.effective)) + '</b></div>'
+    + '<div><span>' + h("statNet") + '</span><b class="num">' + esc(fmtVND(p.net)) + '</b></div>'
+    + '</div></section>';
+  const openAttr = selectedOrder().length === 1 ? " open" : "";
+  let cards = selectedOrder().map((key) => {
+    const r = p.results[key];
+    const rows = resultLines(key, r).map((row) => '<div class="row"><span>' + esc(row.label) + '</span><b class="num">' + esc(row.value) + '</b></div>').join("");
+    return '<details class="src"' + openAttr + '><summary><span class="src-name"><span class="mark sm">' + iconSvg(key, 18) + '</span><span>' + h("inc_" + key) + '</span></span><span class="chev num">' + esc(fmtVND(r.tax || 0)) + '</span></summary><div class="body">' + rows
+      + '<button type="button" class="btn btn-soft" data-action="edit-one" data-key="' + key + '">' + h("editThis") + '</button></div></details>';
+  }).join("");
+  let salaryExtra = "";
+  if (state.selected.includes("salary")) {
+    const r = p.results.salary;
+    salaryExtra += salaryFlow(r);
+    if (isResident() && (r.taxable || 0) > 0) {
+      const segs = paintBrackets(r.taxable || 0);
+      if (segs.length) salaryExtra += '<section class="brackets"><h2>' + h("bracketTitle") + '</h2>' + barBlock(segs) + '<details class="fold"><summary>' + h("bracketDetails") + '</summary>' + bracketTable(r.taxable) + '</details></section>';
+    }
+  }
+  const notes = '<div class="banner warn"><strong>' + h("notesTitle") + '</strong><ul class="clean"><li>' + h("note1") + '</li><li>' + h("note2") + '</li><li>' + h("note3") + '</li><li>' + h("note4").replace("thuedientu.gdt.gov.vn", "") + ' <a class="link" href="https://thuedientu.gdt.gov.vn" target="_blank" rel="noopener noreferrer">thuedientu.gdt.gov.vn</a></li></ul></div>';
+  const actions = '<div class="stack" style="margin-top:18px">'
+    + '<button type="button" class="btn btn-primary btn-block" data-action="share">' + h("share") + '</button>'
+    + '<button type="button" class="btn btn-ghost btn-block" data-action="edit-sources">' + h("editSources") + '</button>'
+    + '<button type="button" class="btn btn-ghost btn-block" data-action="reset-ask">' + h("reset") + '</button>'
+    + '</div>';
+  return hero + salaryExtra + cards + notes + actions
+    + '<p class="help">' + h("netFoot") + '</p>'
+    + '<p class="disclaimer">' + esc(DISCLAIMER) + '</p>';
+}
+
+function renderScreen() {
+  if (state.step === "welcome") return renderWelcome();
+  if (state.step === "select") return renderSelect();
+  if (state.step === "results") return renderResults();
+  return renderForm();
+}
+function renderDock() {
+  if (state.step === "welcome") return "";
+  if (state.step === "select") {
+    const n = state.selected.length;
+    return '<div class="dock"><div class="dock-meta"><div class="dock-k">' + h("sourcesCount", { n }) + '</div></div><button type="button" class="btn btn-primary" data-action="continue"' + (n ? "" : " disabled") + '>' + h("continue") + '</button></div>';
+  }
+  if (state.step === "results") return "";
+  const cur = computeOne(state.formKey);
+  const all = portfolio();
+  const label = state.returnTo === "results" ? t("done") : t("continue");
+  const sub = state.selected.length > 1 ? '<div class="dock-sub">' + h("running") + ' <span class="num">' + esc(fmtVND(all.tax)) + '</span></div>' : '';
+  const z = (cur.tax || 0) === 0 ? " zero" : "";
+  return '<div class="dock"><div class="dock-meta"><div class="dock-k">' + h("estimated") + '</div><div class="dock-v num' + z + '" aria-live="polite">' + esc(fmtVND(cur.tax || 0)) + '</div>' + sub + '</div><button type="button" class="btn btn-primary" data-action="continue">' + esc(label) + '</button></div>';
+}
+function renderModal() {
+  if (state.modal === "share") {
+    const text = shareText();
+    return '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="share-h"><h2 id="share-h" class="sec">' + h("shareHeading") + '</h2><textarea class="textarea" id="share-box" readonly>' + esc(text) + '</textarea><div class="split" style="margin-top:12px"><button type="button" class="btn btn-primary" data-action="copy">' + h(state.copyFlash ? "copied" : "copy") + '</button><button type="button" class="btn btn-ghost" data-action="close-modal">' + h("close") + '</button></div></div></div>';
+  }
+  if (state.confirmReset) {
+    return '<div class="modal-back"><div class="modal" role="dialog" aria-modal="true"><h2 class="sec">' + h("resetAsk") + '</h2><div class="split"><button type="button" class="btn btn-primary" data-action="reset-yes">' + h("resetYes") + '</button><button type="button" class="btn btn-ghost" data-action="reset-no">' + h("cancel") + '</button></div></div></div>';
+  }
+  return "";
+}
+function shareText() {
+  const p = portfolio();
+  const lines = ["VietTax 2026", t("heroTitle"), fmtVND(p.tax), t("shareRes") + ": " + t(isResident() ? "residentShort" : "nonresidentShort"), ""];
+  selectedOrder().forEach((k) => lines.push(t("inc_" + k) + ": " + fmtVND(p.results[k].tax || 0)));
+  lines.push("", t("effective", { p: fmtPct(p.effective) }), t("netLabel") + ": " + fmtVND(p.net), "", DISCLAIMER);
+  return lines.join("\n");
+}
+function render() {
+  const scroller = document.querySelector("main");
+  const keep = state.motion ? 0 : (scroller ? scroller.scrollTop : 0);
+  const focus = focusSnap();
+  document.documentElement.lang = state.lang === "en" ? "en" : "vi";
+  document.title = state.lang === "en" ? "VietTax — Vietnam PIT Calculator 2026" : "VietTax — Tính Thuế Thu Nhập Cá Nhân 2026";
+  const prog = progressModel();
+  const pct = Math.round(prog.i / prog.total * 100);
+  const back = state.step === "welcome" ? "" : '<button type="button" class="icon-btn" data-action="back" aria-label="' + h("back") + '"><svg width="18" height="18" viewBox="0 0 20 20" aria-hidden="true"><path d="M12.5 4 L6.5 10 L12.5 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>';
+  const langBtn = '<button type="button" class="lang" data-action="lang" aria-label="' + h("langAria") + '" aria-pressed="' + (state.lang === "en") + '"><span class="opt' + (state.lang === "vi" ? " on" : "") + '">VI</span><span class="opt' + (state.lang === "en" ? " on" : "") + '">EN</span></button>';
+  const aside = '<aside class="brand-panel"><div><div class="hero-mark">' + logoMark(48) + '<div><div class="word">VietTax</div><div class="word-sub">' + h("brandLine") + '</div></div></div><h2>' + h("asideTitle") + '</h2><div class="badge"><span class="badge-dot" aria-hidden="true"></span>' + esc(LAW_BADGE) + '</div><ul><li>' + h("trust1") + '</li><li>' + h("trust2") + '</li><li>' + h("trust3") + '</li></ul></div><p>' + h("asideFoot") + '</p></aside>';
+  const motionClass = state.motion ? (state.dir < 0 ? "back" : "fwd") : "";
+  document.getElementById("app").innerHTML = '<div class="layout">' + aside + '<div class="shell"><header class="topbar">' + back + '<div class="prog"><div class="prog-kicker">' + h("stepOf", { i: prog.i, n: prog.total }) + '</div><div class="prog-label">' + esc(prog.label) + '</div><div class="track" aria-hidden="true"><span style="width:' + pct + '%"></span></div></div>' + langBtn + '</header><main class="' + motionClass + '"><div class="screen">' + renderScreen() + '</div></main>' + renderDock() + '</div></div>' + renderModal();
+  const main = document.querySelector("main");
+  if (main) main.scrollTop = state.motion ? 0 : keep;
+  focusRestore(focus);
+  state.motion = false;
+}
+
+function focusSnap() {
+  const a = document.activeElement;
+  if (!a || a === document.body) return null;
+  if (a.dataset && a.dataset.money && a.id) return { money: a.id };
+  if (a.id) return { id: a.id };
+  if (a.name) return { name: a.name, value: a.value };
+  return null;
+}
+function focusRestore(f) {
+  if (!f) return;
+  let n = null;
+  if (f.money || f.id) n = document.getElementById(f.money || f.id);
+  else if (f.name) n = document.querySelector('[name="' + f.name + '"][value="' + CSS.escape(f.value) + '"]');
+  if (!n) return;
+  n.focus({ preventScroll: true });
+  if (f.money) {
+    const L = n.value.length;
+    try { n.setSelectionRange(L, L); } catch (e) {}
+  }
+}
+function onClick(e) {
+  const el = e.target.closest("[data-action]");
+  if (!el) {
+    if (e.target.classList && e.target.classList.contains("modal-back")) {
+      state.modal = null;
+      state.confirmReset = false;
+      state.motion = false;
+      render();
+    }
+    return;
+  }
+  const action = el.dataset.action;
+  if (action === "lang") {
+    state.lang = state.lang === "vi" ? "en" : "vi";
+    try { localStorage.setItem(LANG_KEY, state.lang); } catch (err) {}
+    state.motion = false;
+    render();
+    return;
+  }
+  if (action === "start") { state.hasDraft = false; goDelta(1); return; }
+  if (action === "continue") { goDelta(1); return; }
+  if (action === "back") { goDelta(-1); return; }
+  if (action === "period") {
+    const next = el.dataset.value;
+    const s = state.incomeData.salary;
+    if (next === "year" && s.period !== "year") s.annualInput = Math.round((s.grossMonthly || 0) * 12);
+    if (next === "month" && s.period !== "month") s.grossMonthly = Math.round((s.annualInput || 0) / 12);
+    s.period = next;
+    saveState();
+    state.motion = false;
+    render();
+    return;
+  }
+  if (action === "deps") {
+    const n = Number(el.dataset.n);
+    if (n === 5 && state.incomeData.salary.dependents >= 5) return;
+    state.incomeData.salary.dependents = n;
+    saveState();
+    state.motion = false;
+    render();
+    return;
+  }
+  if (action === "dep-inc") {
+    state.incomeData.salary.dependents = Math.min(20, (state.incomeData.salary.dependents || 0) + 1);
+    saveState(); state.motion = false; render(); return;
+  }
+  if (action === "dep-dec") {
+    state.incomeData.salary.dependents = Math.max(5, (state.incomeData.salary.dependents || 5) - 1);
+    saveState(); state.motion = false; render(); return;
+  }
+  if (action === "resume") {
+    state.hasDraft = false;
+    state.motion = true;
+    state.dir = 1;
+    const step = state.resumeStep;
+    const form = state.resumeForm;
+    if (step === "form" && state.selected.includes(form)) {
+      state.step = "form";
+      state.formKey = form;
+    } else if (step === "results" && state.selected.length) {
+      state.step = "results";
+      state.formKey = null;
+    } else if (state.selected.length) {
+      state.step = "select";
+      state.formKey = null;
+    }
+    render();
+    return;
+  }
+  if (action === "fresh") { resetAll(); return; }
+  if (action === "edit-sources") {
+    state.returnTo = null;
+    state.step = "select";
+    state.dir = -1;
+    state.motion = true;
+    saveState();
+    render();
+    return;
+  }
+  if (action === "edit-one") {
+    state.returnTo = "results";
+    state.step = "form";
+    state.formKey = el.dataset.key;
+    state.dir = -1;
+    state.motion = true;
+    saveState();
+    render();
+    return;
+  }
+  if (action === "reset-ask") { state.confirmReset = true; state.motion = false; render(); return; }
+  if (action === "reset-no") { state.confirmReset = false; state.motion = false; render(); return; }
+  if (action === "reset-yes") { resetAll(); return; }
+  if (action === "share") {
+    const text = shareText();
+    if (navigator.share) {
+      navigator.share({ title: "VietTax 2026", text }).catch((err) => {
+        if (err && err.name === "AbortError") return;
+        state.modal = "share";
+        state.motion = false;
+        render();
+      });
+      return;
+    }
+    state.modal = "share";
+    state.motion = false;
+    render();
+    return;
+  }
+  if (action === "copy") {
+    const text = shareText();
+    const done = () => { state.copyFlash = true; state.motion = false; render(); setTimeout(() => { state.copyFlash = false; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done).catch(() => {
+        const box = document.getElementById("share-box");
+        if (box) { box.focus(); box.select(); }
+        document.execCommand("copy");
+        done();
+      });
+    }
+    return;
+  }
+  if (action === "close-modal") {
+    state.modal = null;
+    state.motion = false;
+    render();
+  }
+}
+function onInput(e) {
+  const el = e.target;
+  if (!el.dataset || !el.dataset.money) return;
+  const raw = parseVND(el.value);
+  setPath(el.dataset.money, raw);
+  applyConstraints();
+  saveState();
+  state.motion = false;
+  render();
+}
+function onChange(e) {
+  const el = e.target;
+  if (el.name === "residency") {
+    state.residency = el.value === "non-resident" ? "non-resident" : "resident";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.dataset && el.dataset.income) {
+    const id = el.dataset.income;
+    if (el.checked) {
+      if (!state.selected.includes(id)) state.selected.push(id);
+    } else state.selected = state.selected.filter((k) => k !== id);
+    state.selected = INCOME_ORDER.filter((k) => state.selected.includes(k));
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "ins") {
+    state.incomeData.salary.useAutoInsurance = el.value === "auto";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "charity") {
+    state.incomeData.salary.hasCharity = el.value === "yes";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "method") {
+    const key = state.formKey === "rental" ? "rental" : "business";
+    state.incomeData[key].method = el.value === "cost" ? "cost" : "flat";
+    applyConstraints();
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "knows") {
+    state.incomeData.equity.knowsCost = el.value === "yes";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "casino") {
+    state.incomeData.prizes.isCasino = el.value === "yes";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "roytype") {
+    state.incomeData.royalties.type = el.value === "franchise" ? "franchise" : "royalty";
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "asset") {
+    state.incomeData.inheritance.assetKind = el.value;
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.name === "otype") {
+    state.incomeData.other.incomeType = el.value;
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.dataset && el.dataset.check) {
+    setPath(el.dataset.check, el.checked);
+    applyConstraints();
+    saveState(); state.motion = false; render(); return;
+  }
+  if (el.dataset && el.dataset.select) {
+    setPath(el.dataset.select, el.value);
+    saveState(); state.motion = false; render();
+  }
+}
+
+function init() {
+  try {
+    const lang = localStorage.getItem(LANG_KEY);
+    if (lang === "en" || lang === "vi") state.lang = lang;
+  } catch (e) {}
+  const draftStep = (() => {
+    const had = loadSavedState();
+    return had;
+  })();
+  if (draftStep) {
+    state.resumeStep = state.step;
+    state.resumeForm = state.formKey;
+    state.hasDraft = true;
+    state.step = "welcome";
+    state.formKey = null;
+  }
+  document.addEventListener("click", onClick);
+  document.addEventListener("input", onInput);
+  document.addEventListener("change", onChange);
+  const selfTest = runSelfTests();
+  if (!selfTest.ok) console.error("VietTax self-test", selfTest.fails);
+  render();
+}
+
+window.Tax = Tax;
+window.__viettaxSelfTest = runSelfTests;
+init();
+  </script>
+</body>
+</html>
