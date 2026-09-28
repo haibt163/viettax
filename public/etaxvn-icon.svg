@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1A3A6E"/>
+      <stop offset="1" stop-color="#0E203C"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F6C84A"/>
+      <stop offset="1" stop-color="#C8911A"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <circle cx="512" cy="512" r="306" fill="none" stroke="#C8911A" stroke-width="18" opacity="0.96"/>
+  <circle cx="512" cy="512" r="267" fill="#142848" opacity="0.72"/>
+  <!-- stylized Vietnamese-dong / tax mark -->
+  <path d="M512 330v382 M414 390h132a70 70 0 0 1 0 140H414" fill="none" stroke="#F6E7C1" stroke-width="44" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M414 356h178" fill="none" stroke="#F6C84A" stroke-width="40" stroke-linecap="round"/>
+  <!-- growth curve -->
+  <path d="M250 720 C365 780 516 786 706 650 C756 614 794 570 820 516" fill="none" stroke="url(#gold)" stroke-width="26" stroke-linecap="round"/>
+  <path d="M787 530 831 496 824 552" fill="none" stroke="#F6C84A" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- compact bars -->
+  <rect x="648" y="686" width="54" height="50" rx="9" fill="#C8911A"/>
+  <rect x="721" y="648" width="54" height="88" rx="9" fill="#E0A52A"/>
+  <rect x="794" y="594" width="54" height="142" rx="9" fill="#F6C84A"/>
+</svg>

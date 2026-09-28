@@ -1,0 +1,1 @@
+eTaxVN app-icon assets\n\nCopy these files directly into your project public/ folder.\nReplace public/viettax.html with etaxvn-with-icons.html.\nNo JavaScript changes are required.\n
